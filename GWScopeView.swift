@@ -52,6 +52,7 @@ class GWScopeView: NSView {
         }
     }
 
+    // LFO: waveform
     var lf_waveform: Waveform = .Triangle {
         didSet {
             invalidate_graph()
@@ -65,14 +66,20 @@ class GWScopeView: NSView {
         }
     }
 
+
     // Appearance
 
     let PIXEL_PITCH_mm = 0.135
-    let bg_color = HSB_color(0, s:0, b:0.25)
-    let graticule_color = HSBA_color(0, s:0, b:1, a:0.80)
-    let lf_waveform_color = HSB_color(240, s:0.5, b:1)
+    let bg_color = carbon
+    let graticule_color = white
+    let lf_waveform_color = peacock
+    let aud_waveform_color = mustard
+
+    let graticule_line_width: CGFloat = 0.2
+    let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
     let primary_cycles: Float = 3.0
     let primary_h: Float = 4.0
+
 
     // Implementation
 
@@ -274,7 +281,7 @@ class GWScopeView: NSView {
 
         // axes.
         let ax_path = NSBezierPath()
-        ax_path.lineWidth = 0.25
+        ax_path.lineWidth = graticule_line_width
         ax_path.moveToPoint(NSMakePoint(min.x, origin.y))
         ax_path.lineToPoint(NSMakePoint(max.x, origin.y))
         ax_path.moveToPoint(NSMakePoint(origin.x, min.y))
@@ -282,9 +289,8 @@ class GWScopeView: NSView {
         ax_path.stroke()
 
         let lines_path = NSBezierPath()
-        lines_path.lineWidth = 0.25
-        let dash_pattern: [CGFloat] = [5.0, 5.0]
-        lines_path.setLineDash(dash_pattern, count: 2, phase: 0)
+        lines_path.lineWidth = graticule_line_width
+        lines_path.setLineDash(graticule_dash_pattern, count: 2, phase: 0)
 
         // horizontal lines.  start at center, work left.
         let min_i: Int = Int(min.y) / cm
