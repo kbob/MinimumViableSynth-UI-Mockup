@@ -38,8 +38,21 @@ class GWScopeView: NSView {
         case BandReject
     }
 
+    // Amount (generic)
+    var amount: Float = 1.0 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+
     // Graph style.
-    var graph: Graph = .None {
+    var graph: Graph = .LFWaveform {
+        didSet {
+            invalidate_graph()
+        }
+    }
+
+    var lf_waveform: Waveform = .Triangle {
         didSet {
             invalidate_graph()
         }
@@ -55,11 +68,18 @@ class GWScopeView: NSView {
     // Appearance
 
     let PIXEL_PITCH_mm = 0.135
-    let bg_color = HSB_color(0, s: 0, b: 0.25)
-    let graticule_color = HSBA_color(0, s: 0, b: 1, a: 0.80)
+    let bg_color = HSB_color(0, s:0, b:0.25)
+    let graticule_color = HSBA_color(0, s:0, b:1, a:0.80)
+    let lf_waveform_color = HSB_color(240, s:0.5, b:1)
+    let primary_cycles: Float = 3.0
+    let primary_h: Float = 4.0
 
     // Implementation
 
+    enum Curve {
+        case Primary
+        case Modulated(relative_freq: Float)
+    }
     let xform = NSAffineTransform()
     var inverse_xform = NSAffineTransform()
     var bg_cache: NSImage?
@@ -104,12 +124,119 @@ class GWScopeView: NSView {
             init_bg_cache()
         }
 
+        // draw the background and graticule.
         bg_cache!.drawInRect(dirtyRect,
                              fromRect: dirtyRect,
                              operation: .CompositeSourceOver,
                              fraction: 1.0)
+
+        // select the correct graph.
+        switch graph {
+        case .None:
+            draw_no_graph()
+        case .LFWaveform:
+            draw_lf_graph()
+        case .AudioWaveform:
+            draw_audio_graph()
+        case .Response:
+            draw_response_graph()
+        case .Envelope:
+            draw_envelope_graph()
+        }
     }
 
+    func draw_no_graph() {
+        // no graph drawn.
+    }
+    
+    func draw_lf_graph() {
+        switch lf_waveform {
+        case .Triangle:
+            draw_triangle_waveform(.Primary, color: lf_waveform_color)
+        case .SawUp:
+            draw_saw_up_waveform(.Primary, color: lf_waveform_color)
+        case .SawDown:
+            draw_saw_down_waveform(.Primary, color: lf_waveform_color)
+        case .Square:
+            draw_square_waveform(.Primary, color: lf_waveform_color)
+        case .Random:
+            draw_random_waveform(.Primary, color: lf_waveform_color)
+        case .SampleAndHold:
+            draw_sample_hold_waveform(.Primary, color: lf_waveform_color)
+        default:
+            break
+        }
+    }
+
+    func draw_audio_graph() {
+    }
+    
+    func draw_response_graph() {
+
+    }
+    
+    func draw_envelope_graph() {
+
+    }
+
+    func draw_saw_up_waveform(curve: Curve, color: NSColor) {
+        let curve = NSBezierPath()
+        let min_i = Int(NSMinX(bounds))
+        let max_i = Int(NSMaxX(bounds))
+        for i in min_i...max_i {
+            var  x0 = NSPoint(x: CGFloat(i), y: 0)
+            x0 = inverse_xform.transformPoint(x0)
+            let x = Float(x0.x) * primary_cycles / Float(bounds.width)
+            let phase = (x + 10.0) % 1.0
+            var y: Float = 2 * phase - 1
+            let sx = x * Float(bounds.width) / primary_cycles
+            let sy = y * Float(bounds.height - 10) / 2 - primary_h / 2
+            let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
+            curve.moveToPoint(xform.transformPoint(spt))
+            curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(primary_h)))
+        }
+        color.set()
+        curve.stroke()
+
+    }
+
+    func draw_saw_down_waveform(curve: Curve, color: NSColor) {
+    }
+
+    func draw_square_waveform(curve: Curve, color: NSColor) {
+    }
+
+    func draw_triangle_waveform(curve: Curve, color: NSColor) {
+        let curve = NSBezierPath()
+        let min_i = Int(NSMinX(bounds))
+        let max_i = Int(NSMaxX(bounds))
+        for i in min_i...max_i {
+            var  x0 = NSPoint(x: CGFloat(i), y: 0)
+            x0 = inverse_xform.transformPoint(x0)
+            let x = Float(x0.x) * primary_cycles / Float(bounds.width)
+            let phase = (x + 10.0) % 1.0
+            var y: Float
+            if phase < 0.5 {
+                y = 4 * phase - 1
+            } else {
+                y = 4 * (1 - phase) - 1
+            }
+            let sx = x * Float(bounds.width) / primary_cycles
+            let sy = y * Float(bounds.height - 10) / 2 - primary_h / 2
+            let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
+            curve.moveToPoint(xform.transformPoint(spt))
+            curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(primary_h)))
+        }
+        color.set()
+        curve.stroke()
+    }
+
+    func draw_random_waveform(curve: Curve, color: NSColor) {
+    }
+
+    func draw_sample_hold_waveform(curve: Curve, color: NSColor) {
+    }
+    
     func init_bg_cache() {
 
         var bgc = NSImage(size: bounds.size)

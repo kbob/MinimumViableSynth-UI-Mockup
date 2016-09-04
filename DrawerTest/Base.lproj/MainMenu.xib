@@ -707,7 +707,7 @@
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="None" identifier="1" id="oGS-8D-Kdf">
-                            <view key="view" ambiguous="YES" id="YNG-Kd-DVr">
+                            <view key="view" id="YNG-Kd-DVr">
                                 <rect key="frame" x="10" y="33" width="712" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
@@ -966,7 +966,7 @@
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Envelope" identifier="" id="FuX-yg-wAp">
-                            <view key="view" id="7Ip-cD-fb8">
+                            <view key="view" ambiguous="YES" id="7Ip-cD-fb8">
                                 <rect key="frame" x="10" y="33" width="712" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
