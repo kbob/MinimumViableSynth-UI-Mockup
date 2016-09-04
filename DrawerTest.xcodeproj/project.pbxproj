@@ -10,6 +10,11 @@
 		925E97061D7A490400EE3AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E97051D7A490400EE3AD4 /* AppDelegate.swift */; };
 		925E97081D7A490400EE3AD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 925E97071D7A490400EE3AD4 /* Assets.xcassets */; };
 		925E970B1D7A490400EE3AD4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925E97091D7A490400EE3AD4 /* MainMenu.xib */; };
+		925E97131D7A5D6200EE3AD4 /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E97121D7A5D6200EE3AD4 /* DrawerController.swift */; };
+		925E97151D7A7AF300EE3AD4 /* GWScopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E97141D7A7AF300EE3AD4 /* GWScopeView.swift */; };
+		925E97191D7A7F9900EE3AD4 /* ColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E97181D7A7F9900EE3AD4 /* ColorUtil.swift */; };
+		925E97361D7A958D00EE3AD4 /* GWScopeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E97351D7A958D00EE3AD4 /* GWScopeController.swift */; };
+		925E97381D7A9DA400EE3AD4 /* GWScreenSimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925E97371D7A9DA400EE3AD4 /* GWScreenSimView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +23,11 @@
 		925E97071D7A490400EE3AD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		925E970A1D7A490400EE3AD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		925E970C1D7A490400EE3AD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		925E97121D7A5D6200EE3AD4 /* DrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
+		925E97141D7A7AF300EE3AD4 /* GWScopeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GWScopeView.swift; sourceTree = "<group>"; };
+		925E97181D7A7F9900EE3AD4 /* ColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtil.swift; sourceTree = "<group>"; };
+		925E97351D7A958D00EE3AD4 /* GWScopeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GWScopeController.swift; sourceTree = "<group>"; };
+		925E97371D7A9DA400EE3AD4 /* GWScreenSimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GWScreenSimView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +44,11 @@
 		925E96F91D7A490400EE3AD4 = {
 			isa = PBXGroup;
 			children = (
+				925E97371D7A9DA400EE3AD4 /* GWScreenSimView.swift */,
+				925E97141D7A7AF300EE3AD4 /* GWScopeView.swift */,
+				925E97351D7A958D00EE3AD4 /* GWScopeController.swift */,
+				925E97121D7A5D6200EE3AD4 /* DrawerController.swift */,
+				925E97181D7A7F9900EE3AD4 /* ColorUtil.swift */,
 				925E97041D7A490400EE3AD4 /* DrawerTest */,
 				925E97031D7A490400EE3AD4 /* Products */,
 			);
@@ -128,7 +143,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				925E97131D7A5D6200EE3AD4 /* DrawerController.swift in Sources */,
 				925E97061D7A490400EE3AD4 /* AppDelegate.swift in Sources */,
+				925E97361D7A958D00EE3AD4 /* GWScopeController.swift in Sources */,
+				925E97151D7A7AF300EE3AD4 /* GWScopeView.swift in Sources */,
+				925E97381D7A9DA400EE3AD4 /* GWScreenSimView.swift in Sources */,
+				925E97191D7A7F9900EE3AD4 /* ColorUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
