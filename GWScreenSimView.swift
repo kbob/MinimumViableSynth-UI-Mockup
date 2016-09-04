@@ -11,7 +11,6 @@ import Cocoa
 class GWScreenSimView: NSView {
 
     let bg_color = HSB_color(259, s: 1.0, b: 0.18)
-//    let bg_color = HSB_color(259, s: 1.0, b: 0.5)
 
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)

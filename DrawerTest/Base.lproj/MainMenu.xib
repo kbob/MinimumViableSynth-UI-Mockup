@@ -727,10 +727,13 @@
                                     </textField>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lwe-v1-J0E">
                                         <rect key="frame" x="192" y="127" width="71" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Dk3-LN-OdH">
+                                        <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Dk3-LN-OdH">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="D0p-RR-Rd9"/>
+                                        </connections>
                                     </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jV-wS-KS9">
                                         <rect key="frame" x="192" y="105" width="69" height="18"/>
@@ -738,6 +741,9 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="Fxb-oR-ZbD"/>
+                                        </connections>
                                     </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bg3-EJ-wSb">
                                         <rect key="frame" x="192" y="83" width="85" height="18"/>
@@ -745,6 +751,9 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="jIl-Hu-Dkd"/>
+                                        </connections>
                                     </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="amR-L3-WaY">
                                         <rect key="frame" x="192" y="61" width="65" height="18"/>
@@ -752,6 +761,9 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="Bky-a9-O6y"/>
+                                        </connections>
                                     </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-oW-qsc">
                                         <rect key="frame" x="192" y="39" width="72" height="18"/>
@@ -759,6 +771,9 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="mDX-gS-Hy6"/>
+                                        </connections>
                                     </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pun-1X-ECK">
                                         <rect key="frame" x="192" y="17" width="100" height="18"/>
@@ -766,6 +781,9 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="7uW-k7-mTu"/>
+                                        </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-wP-IoU">
                                         <rect key="frame" x="453" y="152" width="81" height="19"/>
@@ -785,7 +803,7 @@
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnS-f1-6IH">
                                         <rect key="frame" x="453" y="15" width="21" height="106"/>
-                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="TUa-e5-R84"/>
+                                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="127" doubleValue="127" tickMarkPosition="right" sliderType="linear" id="TUa-e5-R84"/>
                                     </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U24-c8-cxg">
                                         <rect key="frame" x="504" y="128" width="30" height="17"/>
@@ -797,7 +815,7 @@
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDC-bx-cdT">
                                         <rect key="frame" x="513" y="15" width="21" height="106"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="bV5-CV-sxJ"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="127" tickMarkPosition="right" sliderType="linear" id="bV5-CV-sxJ"/>
                                     </slider>
                                 </subviews>
                             </view>
@@ -817,7 +835,7 @@
                                     </textField>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-4R-Fzs">
                                         <rect key="frame" x="192" y="127" width="80" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Sawtooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="08e-Mr-sdo">
+                                        <buttonCell key="cell" type="radio" title="Sawtooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="08e-Mr-sdo">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -852,8 +870,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78l-vY-bCC">
-                                        <rect key="frame" x="352" y="14" width="20" height="132"/>
-                                        <sliderCell key="cell" alignment="left" minValue="1" maxValue="50" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="PLR-kq-54Y"/>
+                                        <rect key="frame" x="352" y="14" width="21" height="132"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="50" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="PLR-kq-54Y"/>
                                     </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzN-Wc-4a0">
                                         <rect key="frame" x="453" y="152" width="81" height="19"/>
@@ -873,7 +891,7 @@
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ko-E7-pKN">
                                         <rect key="frame" x="453" y="15" width="21" height="106"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="VYh-2T-zQV"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="127" doubleValue="127" tickMarkPosition="right" sliderType="linear" id="VYh-2T-zQV"/>
                                     </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blA-L3-Pq5">
                                         <rect key="frame" x="504" y="128" width="30" height="17"/>
@@ -885,7 +903,7 @@
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f0J-Gb-JcU">
                                         <rect key="frame" x="513" y="15" width="21" height="106"/>
-                                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="Xuh-do-143"/>
+                                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="127" tickMarkPosition="right" sliderType="linear" id="Xuh-do-143"/>
                                     </slider>
                                 </subviews>
                             </view>
@@ -933,7 +951,7 @@
                                     </button>
                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9L-K1-ebZ">
                                         <rect key="frame" x="192" y="39" width="42" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Off" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="vsV-mT-ZBa">
+                                        <buttonCell key="cell" type="radio" title="Off" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="vsV-mT-ZBa">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -948,7 +966,7 @@
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xc5-Ub-LYj">
                                         <rect key="frame" x="352" y="14" width="21" height="132"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="127" doubleValue="127" tickMarkPosition="right" sliderType="linear" id="sxB-4J-lWx"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="127" doubleValue="127" tickMarkPosition="right" sliderType="linear" id="sxB-4J-lWx"/>
                                     </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mnx-YF-2Nk">
                                         <rect key="frame" x="456" y="152" width="80" height="19"/>
@@ -960,7 +978,7 @@
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IvH-ht-2K2">
                                         <rect key="frame" x="486" y="14" width="21" height="132"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="127" tickMarkPosition="right" sliderType="linear" id="HlF-Ch-3Lm"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="127" tickMarkPosition="right" sliderType="linear" id="HlF-Ch-3Lm"/>
                                     </slider>
                                 </subviews>
                             </view>
@@ -979,8 +997,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRA-a6-QGE">
-                                        <rect key="frame" x="210" y="14" width="20" height="132"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="6gh-O1-VWP"/>
+                                        <rect key="frame" x="210" y="14" width="21" height="132"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="6gh-O1-VWP"/>
                                     </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VI0-wn-E5b">
                                         <rect key="frame" x="293" y="152" width="58" height="19"/>
@@ -1015,20 +1033,20 @@
                                         </textFieldCell>
                                     </textField>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSQ-H9-nbi">
-                                        <rect key="frame" x="312" y="14" width="20" height="132"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="NdD-dZ-dPP"/>
+                                        <rect key="frame" x="312" y="14" width="21" height="132"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="NdD-dZ-dPP"/>
                                     </slider>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="77b-pp-a5f">
-                                        <rect key="frame" x="374" y="14" width="20" height="132"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="TA1-kg-0jg"/>
+                                        <rect key="frame" x="374" y="14" width="21" height="132"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="TA1-kg-0jg"/>
                                     </slider>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-OB-BFf">
-                                        <rect key="frame" x="436" y="14" width="20" height="132"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="0Np-pX-PJK"/>
+                                        <rect key="frame" x="436" y="14" width="21" height="132"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="0Np-pX-PJK"/>
                                     </slider>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aEW-Kg-zfb">
-                                        <rect key="frame" x="498" y="14" width="20" height="132"/>
-                                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="XJe-Vj-35O"/>
+                                        <rect key="frame" x="498" y="14" width="21" height="132"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="XJe-Vj-35O"/>
                                     </slider>
                                 </subviews>
                             </view>

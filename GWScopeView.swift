@@ -46,7 +46,7 @@ class GWScopeView: NSView {
     }
 
     // Graph style.
-    var graph: Graph = .LFWaveform {
+    var graph: Graph = .None {
         didSet {
             invalidate_graph()
         }
@@ -113,7 +113,7 @@ class GWScopeView: NSView {
     }
 
     func invalidate_graph() {
-        setNeedsDisplayInRect(frame)
+        setNeedsDisplayInRect(bounds)
     }
 
     override func drawRect(dirtyRect: NSRect) {
@@ -150,25 +150,11 @@ class GWScopeView: NSView {
     }
     
     func draw_lf_graph() {
-        switch lf_waveform {
-        case .Triangle:
-            draw_triangle_waveform(.Primary, color: lf_waveform_color)
-        case .SawUp:
-            draw_saw_up_waveform(.Primary, color: lf_waveform_color)
-        case .SawDown:
-            draw_saw_down_waveform(.Primary, color: lf_waveform_color)
-        case .Square:
-            draw_square_waveform(.Primary, color: lf_waveform_color)
-        case .Random:
-            draw_random_waveform(.Primary, color: lf_waveform_color)
-        case .SampleAndHold:
-            draw_sample_hold_waveform(.Primary, color: lf_waveform_color)
-        default:
-            break
-        }
+        draw_waveform(.Primary, waveform: lf_waveform, color: lf_waveform_color)
     }
 
     func draw_audio_graph() {
+
     }
     
     func draw_response_graph() {
@@ -179,16 +165,15 @@ class GWScopeView: NSView {
 
     }
 
-    func draw_saw_up_waveform(curve: Curve, color: NSColor) {
+    func draw_waveform(curve: Curve, waveform: Waveform, color: NSColor) {
         let curve = NSBezierPath()
         let min_i = Int(NSMinX(bounds))
         let max_i = Int(NSMaxX(bounds))
         for i in min_i...max_i {
-            var  x0 = NSPoint(x: CGFloat(i), y: 0)
+            var x0 = NSPoint(x: CGFloat(i), y: 0)
             x0 = inverse_xform.transformPoint(x0)
             let x = Float(x0.x) * primary_cycles / Float(bounds.width)
-            let phase = (x + 10.0) % 1.0
-            var y: Float = 2 * phase - 1
+            let y = y_value(x, waveform: waveform)
             let sx = x * Float(bounds.width) / primary_cycles
             let sy = y * Float(bounds.height - 10) / 2 - primary_h / 2
             let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
@@ -197,46 +182,56 @@ class GWScopeView: NSView {
         }
         color.set()
         curve.stroke()
-
     }
 
-    func draw_saw_down_waveform(curve: Curve, color: NSColor) {
+    func y_value(x: Float, waveform: Waveform) -> Float {
+
+        let phase = x - floor(x)
+        switch waveform {
+        case .SawUp:
+            return 2 * phase - 1
+        case .SawDown:
+            return -2 * phase + 1
+        case .Square:
+            return phase < 0.5 ? +1 : -1
+        case .Triangle:
+            return phase < 0.5 ? 4 * phase - 1 : -4 * phase + 3
+        case .Random:
+            return y_value_random(x)
+        case .SampleAndHold:
+            return y_value_sample_hold(x)
+        default:
+            return 0
+        }
     }
 
-    func draw_square_waveform(curve: Curve, color: NSColor) {
-    }
+    func y_value_random(x: Float) -> Float {
 
-    func draw_triangle_waveform(curve: Curve, color: NSColor) {
-        let curve = NSBezierPath()
-        let min_i = Int(NSMinX(bounds))
-        let max_i = Int(NSMaxX(bounds))
-        for i in min_i...max_i {
-            var  x0 = NSPoint(x: CGFloat(i), y: 0)
-            x0 = inverse_xform.transformPoint(x0)
-            let x = Float(x0.x) * primary_cycles / Float(bounds.width)
-            let phase = (x + 10.0) % 1.0
-            var y: Float
-            if phase < 0.5 {
-                y = 4 * phase - 1
+        func bigrand(n: Int, b: Int) -> Int {
+            if n != 0 {
+                return Int(Int64(bigrand(n - 1, b: b)) * 48271 % 0x7fffffff)
             } else {
-                y = 4 * (1 - phase) - 1
+                return b
             }
-            let sx = x * Float(bounds.width) / primary_cycles
-            let sy = y * Float(bounds.height - 10) / 2 - primary_h / 2
-            let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
-            curve.moveToPoint(xform.transformPoint(spt))
-            curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(primary_h)))
         }
-        color.set()
-        curve.stroke()
+
+        func random(n: Int, b: Int) -> Float {
+            return Float(bigrand(n, b: b) % 23) / 23.0
+        }
+
+        func rand_noise(x: Float, b: Int) -> Float {
+            let a = random(Int(x + ceil(primary_cycles/2)), b: b)
+            let b = random(Int(x + ceil(primary_cycles/2)) + 1, b: b)
+            return (a + (x-floor(x)) * (b - a)) * 2 - 1
+        }
+
+        return rand_noise(x, b: 9)
     }
 
-    func draw_random_waveform(curve: Curve, color: NSColor) {
+    func y_value_sample_hold(x: Float) -> Float {
+        return y_value_random(floor(x))
     }
 
-    func draw_sample_hold_waveform(curve: Curve, color: NSColor) {
-    }
-    
     func init_bg_cache() {
 
         var bgc = NSImage(size: bounds.size)
