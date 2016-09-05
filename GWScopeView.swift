@@ -404,14 +404,11 @@ class GWScopeView: NSView {
         // compute bevel colors
         let parent_color = (superview as! GWScreenSimView).bg_color
         var pch: CGFloat = 0, pcs: CGFloat = 0, pcb: CGFloat = 0
-        var bch: CGFloat = 0, bcs: CGFloat = 0, bcb: CGFloat = 0
         parent_color.getHue(&pch,
                             saturation: &pcs,
                             brightness: &pcb,
                             alpha: nil)
-        bg_color.getHue(&bch, saturation: &bcs, brightness: &bcb, alpha: nil)
         pch *= 360;             // convert to degrees
-        bch *= 360;
         let bevel_light = HSB_color(pch, s: pcs, b: pcb + 0.2)
         let bevel_dark = HSB_color(pch, s: pcs, b: pcb * 0.8)
         let bevel_shadow = HSBA_color(0, s: 0, b: 0, a: 0.3)
