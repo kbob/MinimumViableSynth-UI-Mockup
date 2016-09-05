@@ -12,11 +12,13 @@ class GWScopeController: NSObject, NSTabViewDelegate {
     @IBOutlet weak var view: GWScopeView?
     @IBOutlet weak var tabView: NSTabView?
 
+    let amount_default: Float = 1.0
     let graph_default: GWScopeView.Graph = .None
     let lf_waveform_default: GWScopeView.Waveform = .Triangle
 
     override init() {
         if view != nil {
+            view!.amount = amount_default
             view!.graph = graph_default
             view!.lf_waveform = lf_waveform_default
         }
@@ -59,6 +61,12 @@ class GWScopeController: NSObject, NSTabViewDelegate {
             } else if title == "Sample/Hold" {
                 view!.lf_waveform = .SampleAndHold
             }
+        }
+    }
+
+    @IBAction func set_amount(sender: AnyObject) {
+        if let ctl = sender as? NSControl {
+            view!.amount = ctl.floatValue
         }
     }
     

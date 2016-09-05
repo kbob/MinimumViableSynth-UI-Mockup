@@ -10,6 +10,7 @@ import Cocoa
 
 class GWScopeView: NSView {
 
+
     // Public API
 
     enum Graph {
@@ -44,6 +45,16 @@ class GWScopeView: NSView {
             invalidate_graph()
         }
     }
+    var amount_mod_min: Float = 1.0 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var amount_mod_max: Float = 1.0 {
+        didSet {
+            invalidate_graph()
+        }
+    }
 
     // Graph style.
     var graph: Graph = .None {
@@ -54,6 +65,16 @@ class GWScopeView: NSView {
 
     // LFO: waveform
     var lf_waveform: Waveform = .Triangle {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var lf_freq_mod_min: Float = 1.0 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var lf_freq_mod_max: Float = 1.0 {
         didSet {
             invalidate_graph()
         }
@@ -79,6 +100,7 @@ class GWScopeView: NSView {
     let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
     let primary_cycles: Float = 3.0
     let primary_h: Float = 4.0
+    let mod_h: Float = 1.0
 
 
     // Implementation
@@ -126,7 +148,6 @@ class GWScopeView: NSView {
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
         
-        // Drawing code here.
         if bg_cache == nil {
             init_bg_cache()
         }
@@ -137,7 +158,7 @@ class GWScopeView: NSView {
                              operation: .CompositeSourceOver,
                              fraction: 1.0)
 
-        // select the correct graph.
+        // draw the selected graph.
         switch graph {
         case .None:
             draw_no_graph()
@@ -157,7 +178,8 @@ class GWScopeView: NSView {
     }
     
     func draw_lf_graph() {
-        draw_waveform(.Primary, waveform: lf_waveform, color: lf_waveform_color)
+        draw_primary_waveform(lf_waveform,
+                              color: lf_waveform_color)
     }
 
     func draw_audio_graph() {
@@ -172,17 +194,36 @@ class GWScopeView: NSView {
 
     }
 
-    func draw_waveform(curve: Curve, waveform: Waveform, color: NSColor) {
+    func draw_primary_waveform(waveform: Waveform,
+                               color: NSColor) {
+        draw_waveform(waveform, color: color, primary: true)
+    }
+
+    func draw_mod_waveforms(waveform: Waveform,
+                            color: NSColor,
+                            freq_min: Float,
+                            freq_max: Float,
+                            amt_min: Float,
+                            amt_max: Float) {
+
+    }
+
+//    func draw_mod_waveforms(waveform: Waveform, amount: Float, )
+
+    func draw_waveform(waveform: Waveform,
+                       color: NSColor,
+                       primary: Bool) {
         let curve = NSBezierPath()
         let min_i = Int(NSMinX(bounds))
         let max_i = Int(NSMaxX(bounds))
+        let dot_height = primary ? primary_h : mod_h
         for i in min_i...max_i {
             var x0 = NSPoint(x: CGFloat(i), y: 0)
             x0 = inverse_xform.transformPoint(x0)
             let x = Float(x0.x) * primary_cycles / Float(bounds.width)
-            let y = y_value(x, waveform: waveform)
+            let y = y_value(x, waveform: waveform) * amount
             let sx = x * Float(bounds.width) / primary_cycles
-            let sy = y * Float(bounds.height - 10) / 2 - primary_h / 2
+            let sy = y * Float(bounds.height - 10) / 2 - dot_height / 2
             let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
             curve.moveToPoint(xform.transformPoint(spt))
             curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(primary_h)))

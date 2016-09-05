@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -703,89 +704,112 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ILa-oJ-HKO">
-                    <rect key="frame" x="11" y="10" width="732" height="220"/>
+                    <rect key="frame" x="11" y="10" width="640" height="220"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="None" identifier="1" id="oGS-8D-Kdf">
                             <view key="view" id="YNG-Kd-DVr">
-                                <rect key="frame" x="10" y="33" width="712" height="174"/>
+                                <rect key="frame" x="10" y="33" width="620" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="LFO" identifier="2" id="Ge7-zT-FXu">
                             <view key="view" id="aa3-W7-HGx">
-                                <rect key="frame" x="10" y="33" width="712" height="174"/>
+                                <rect key="frame" x="10" y="33" width="620" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crV-cC-iBh">
-                                        <rect key="frame" x="191" y="152" width="74" height="19"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Waveform" id="EEv-TG-zPD">
-                                            <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lwe-v1-J0E">
-                                        <rect key="frame" x="192" y="127" width="71" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Dk3-LN-OdH">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="D0p-RR-Rd9"/>
-                                        </connections>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jV-wS-KS9">
-                                        <rect key="frame" x="192" y="105" width="69" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Saw Up" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wtR-oZ-EYQ">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="Fxb-oR-ZbD"/>
-                                        </connections>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bg3-EJ-wSb">
-                                        <rect key="frame" x="192" y="83" width="85" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Saw Down" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="rxj-eH-Vwi">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="jIl-Hu-Dkd"/>
-                                        </connections>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="amR-L3-WaY">
-                                        <rect key="frame" x="192" y="61" width="65" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Square" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Rua-Ys-vUd">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="Bky-a9-O6y"/>
-                                        </connections>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-oW-qsc">
-                                        <rect key="frame" x="192" y="39" width="72" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Random" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="St4-Ta-Krx">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="mDX-gS-Hy6"/>
-                                        </connections>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pun-1X-ECK">
-                                        <rect key="frame" x="192" y="17" width="100" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Sample/Hold" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="aZU-2T-8Tl">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="7uW-k7-mTu"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-wP-IoU">
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUT-mE-RGA">
+                                        <rect key="frame" x="193" y="8" width="97" height="163"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="crV-cC-iBh">
+                                                <rect key="frame" x="-2" y="144" width="74" height="19"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Waveform" id="EEv-TG-zPD">
+                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Lwe-v1-J0E">
+                                                <rect key="frame" x="-1" y="119" width="71" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Dk3-LN-OdH">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="D0p-RR-Rd9"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="6jV-wS-KS9">
+                                                <rect key="frame" x="-1" y="95" width="69" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Saw Up" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wtR-oZ-EYQ">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="Fxb-oR-ZbD"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Bg3-EJ-wSb">
+                                                <rect key="frame" x="-1" y="71" width="85" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Saw Down" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="rxj-eH-Vwi">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="jIl-Hu-Dkd"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="amR-L3-WaY">
+                                                <rect key="frame" x="-1" y="47" width="65" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Square" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Rua-Ys-vUd">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="Bky-a9-O6y"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="yhK-oW-qsc">
+                                                <rect key="frame" x="-1" y="23" width="72" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Random" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="St4-Ta-Krx">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="mDX-gS-Hy6"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="pun-1X-ECK">
+                                                <rect key="frame" x="-1" y="-1" width="100" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Sample/Hold" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="aZU-2T-8Tl">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="set_lf_waveform:" target="SqC-lQ-Uu3" id="7uW-k7-mTu"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-wP-IoU">
                                         <rect key="frame" x="453" y="152" width="81" height="19"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Modulation" id="UfW-Q9-zS7">
                                             <font key="font" metaFont="system" size="15"/>
@@ -793,7 +817,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWB-WX-53V">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWB-WX-53V">
                                         <rect key="frame" x="453" y="128" width="26" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Min" id="3XE-DD-GMq">
                                             <font key="font" metaFont="system"/>
@@ -801,11 +825,11 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnS-f1-6IH">
+                                    <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnS-f1-6IH">
                                         <rect key="frame" x="453" y="15" width="21" height="106"/>
                                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="127" doubleValue="127" tickMarkPosition="right" sliderType="linear" id="TUa-e5-R84"/>
                                     </slider>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U24-c8-cxg">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U24-c8-cxg">
                                         <rect key="frame" x="504" y="128" width="30" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Max" id="acM-c0-oP3">
                                             <font key="font" metaFont="system"/>
@@ -813,55 +837,80 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDC-bx-cdT">
+                                    <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDC-bx-cdT">
                                         <rect key="frame" x="513" y="15" width="21" height="106"/>
                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="127" tickMarkPosition="right" sliderType="linear" id="bV5-CV-sxJ"/>
                                     </slider>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="qWB-WX-53V" firstAttribute="leading" secondItem="pVR-wP-IoU" secondAttribute="leading" id="5Qe-D0-yPC"/>
+                                    <constraint firstItem="U24-c8-cxg" firstAttribute="trailing" secondItem="pVR-wP-IoU" secondAttribute="trailing" id="U4M-I3-Mka"/>
+                                    <constraint firstItem="hnS-f1-6IH" firstAttribute="leading" secondItem="pVR-wP-IoU" secondAttribute="leading" id="Vfd-SH-SnH"/>
+                                    <constraint firstItem="lDC-bx-cdT" firstAttribute="trailing" secondItem="pVR-wP-IoU" secondAttribute="trailing" id="VqR-qK-laQ"/>
+                                </constraints>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Oscillator" identifier="" id="sI3-rr-7LI">
-                            <view key="view" id="MOO-7C-5pm">
-                                <rect key="frame" x="10" y="33" width="712" height="174"/>
+                            <view key="view" ambiguous="YES" id="MOO-7C-5pm">
+                                <rect key="frame" x="10" y="33" width="620" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zIM-Xh-c08">
-                                        <rect key="frame" x="191" y="152" width="74" height="19"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Waveform" id="fG2-Vi-wC1">
-                                            <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-4R-Fzs">
-                                        <rect key="frame" x="192" y="127" width="80" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Sawtooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="08e-Mr-sdo">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTE-N3-seJ">
-                                        <rect key="frame" x="192" y="105" width="65" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Square" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="TfF-o0-5Gl">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="axG-03-7ff">
-                                        <rect key="frame" x="192" y="83" width="71" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="QFH-s6-e16">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nWt-vW-ZMi">
-                                        <rect key="frame" x="192" y="61" width="49" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Sine" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="OUc-AW-RlP">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPp-kR-btD">
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lwn-WG-zei">
+                                        <rect key="frame" x="193" y="56" width="77" height="115"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zIM-Xh-c08">
+                                                <rect key="frame" x="-2" y="96" width="74" height="19"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Waveform" id="fG2-Vi-wC1">
+                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="C5I-4R-Fzs">
+                                                <rect key="frame" x="-1" y="71" width="80" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Sawtooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="08e-Mr-sdo">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="vTE-N3-seJ">
+                                                <rect key="frame" x="-1" y="47" width="65" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Square" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="TfF-o0-5Gl">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="axG-03-7ff">
+                                                <rect key="frame" x="-1" y="23" width="71" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="QFH-s6-e16">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="nWt-vW-ZMi">
+                                                <rect key="frame" x="-1" y="-1" width="49" height="18"/>
+                                                <buttonCell key="cell" type="radio" title="Sine" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="OUc-AW-RlP">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPp-kR-btD">
                                         <rect key="frame" x="340" y="152" width="45" height="19"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Width" id="4w8-n0-Wd2">
                                             <font key="font" metaFont="system" size="15"/>
@@ -869,7 +918,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78l-vY-bCC">
+                                    <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78l-vY-bCC">
                                         <rect key="frame" x="352" y="14" width="21" height="132"/>
                                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="50" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="PLR-kq-54Y"/>
                                     </slider>
@@ -906,11 +955,14 @@
                                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="127" tickMarkPosition="right" sliderType="linear" id="Xuh-do-143"/>
                                     </slider>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="78l-vY-bCC" firstAttribute="centerX" secondItem="XPp-kR-btD" secondAttribute="centerX" id="mS4-id-6xT"/>
+                                </constraints>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Response" identifier="" id="6Dc-mk-HuX">
                             <view key="view" id="zsI-fC-lPe">
-                                <rect key="frame" x="10" y="33" width="712" height="174"/>
+                                <rect key="frame" x="10" y="33" width="620" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNS-wO-PBL">
@@ -984,22 +1036,10 @@
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Envelope" identifier="" id="FuX-yg-wAp">
-                            <view key="view" ambiguous="YES" id="7Ip-cD-fb8">
-                                <rect key="frame" x="10" y="33" width="712" height="174"/>
+                            <view key="view" id="7Ip-cD-fb8">
+                                <rect key="frame" x="10" y="33" width="620" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2kX-aW-ZYP">
-                                        <rect key="frame" x="191" y="152" width="58" height="19"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amount" id="Acs-Ld-Pwc">
-                                            <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRA-a6-QGE">
-                                        <rect key="frame" x="210" y="14" width="21" height="132"/>
-                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="6gh-O1-VWP"/>
-                                    </slider>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VI0-wn-E5b">
                                         <rect key="frame" x="293" y="152" width="58" height="19"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Attack" id="Eag-5y-73G">
@@ -1032,9 +1072,9 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSQ-H9-nbi">
+                                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRA-a6-QGE">
                                         <rect key="frame" x="312" y="14" width="21" height="132"/>
-                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="NdD-dZ-dPP"/>
+                                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="6gh-O1-VWP"/>
                                     </slider>
                                     <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="77b-pp-a5f">
                                         <rect key="frame" x="374" y="14" width="21" height="132"/>
@@ -1056,9 +1096,32 @@
                         <outlet property="delegate" destination="SqC-lQ-Uu3" id="Jm1-3E-Xs5"/>
                     </connections>
                 </tabView>
+                <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSQ-H9-nbi">
+                    <rect key="frame" x="690" y="39" width="21" height="132"/>
+                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="right" sliderType="linear" id="NdD-dZ-dPP"/>
+                    <connections>
+                        <action selector="set_amount:" target="SqC-lQ-Uu3" id="ddV-uw-znf"/>
+                    </connections>
+                </slider>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2kX-aW-ZYP">
+                    <rect key="frame" x="671" y="172" width="58" height="19"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amount" id="Acs-Ld-Pwc">
+                        <font key="font" metaFont="system" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
+            <constraints>
+                <constraint firstItem="aSQ-H9-nbi" firstAttribute="centerX" secondItem="2kX-aW-ZYP" secondAttribute="centerX" id="DWj-NF-Snf"/>
+            </constraints>
             <point key="canvasLocation" x="470" y="930"/>
         </customView>
+        <customObject id="SqC-lQ-Uu3" customClass="GWScopeController" customModule="DrawerTest" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="2Y2-70-Chf" id="jIJ-v3-bMN"/>
+            </connections>
+        </customObject>
         <drawer preferredEdge="minY" leadingOffset="15" trailingOffset="15" id="Jid-IC-uL8">
             <size key="contentSize" width="770" height="265"/>
             <size key="maxContentSize" width="10000" height="10000"/>
@@ -1070,11 +1133,6 @@
         <customObject id="lZw-Kl-3hY" customClass="DrawerController" customModule="DrawerTest" customModuleProvider="target">
             <connections>
                 <outlet property="drawer" destination="Jid-IC-uL8" id="DaA-Ek-8om"/>
-            </connections>
-        </customObject>
-        <customObject id="SqC-lQ-Uu3" customClass="GWScopeController" customModule="DrawerTest" customModuleProvider="target">
-            <connections>
-                <outlet property="view" destination="2Y2-70-Chf" id="jIJ-v3-bMN"/>
             </connections>
         </customObject>
     </objects>
