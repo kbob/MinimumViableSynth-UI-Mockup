@@ -11,7 +11,7 @@ import Cocoa
 class GWScopeView: NSView {
 
 
-    // Public API
+    // MARK: Public API
 
     enum Graph {
         case None
@@ -63,7 +63,7 @@ class GWScopeView: NSView {
         }
     }
 
-    // LFO: waveform
+    // LFO Parameters
     var lf_waveform: Waveform = .Triangle {
         didSet {
             invalidate_graph()
@@ -80,30 +80,65 @@ class GWScopeView: NSView {
         }
     }
 
-    // Filter graph: cutoff frequency
-    var cutoff: Float = 20000 {
+    // Oscillator Parameters
+    var af_waveform: Waveform = .SawUp {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var af_shape_mod_min: Float = 0.0 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var af_shape_mod_max: Float = 0.0 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var af_freq_mod_min: Float = 1.0 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var af_freq_mod_max: Float = 1.0 {
         didSet {
             invalidate_graph()
         }
     }
 
 
-    // Appearance
+    // Filter Parameters
+    var cutoff: Float = 20000 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+
+    func invalidate_graph() {
+        setNeedsDisplayInRect(bounds)
+    }
+
+
+    // MARK: Appearance
 
     let PIXEL_PITCH_mm = 0.135
+
     let bg_color = carbon
     let graticule_color = white
     let lf_waveform_color = peacock
-    let aud_waveform_color = mustard
+    let af_waveform_color = mustard
 
     let graticule_line_width: CGFloat = 0.2
     let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
+
+    let y_height: Float = 4.0
     let primary_cycles: Float = 3.0
     let primary_h: Float = 4.0
     let mod_h: Float = 1.0
 
 
-    // Implementation
+    // MARK: Implementation
 
     enum Curve {
         case Primary
@@ -130,6 +165,9 @@ class GWScopeView: NSView {
 
     // envelope: (amount, Atime, Dtime, Slevel, Rtime)
 
+
+    // MARK: NSView Methods
+
     required init?(coder: NSCoder) {
 
         super.init(coder: coder)
@@ -139,10 +177,6 @@ class GWScopeView: NSView {
         xform.translateXBy(bsize.width / 2, yBy: bsize.height / 2)
         inverse_xform.appendTransform(xform)
         inverse_xform.invert()
-    }
-
-    func invalidate_graph() {
-        setNeedsDisplayInRect(bounds)
     }
 
     override func drawRect(dirtyRect: NSRect) {
@@ -173,17 +207,19 @@ class GWScopeView: NSView {
         }
     }
 
+
+    // MARK: Graph Drawing
+
     func draw_no_graph() {
         // no graph drawn.
     }
     
     func draw_lf_graph() {
-        draw_primary_waveform(lf_waveform,
-                              color: lf_waveform_color)
+        draw_primary_waveform(lf_waveform, color: lf_waveform_color)
     }
 
     func draw_audio_graph() {
-
+        draw_primary_waveform(af_waveform, color: af_waveform_color)
     }
     
     func draw_response_graph() {
@@ -194,9 +230,12 @@ class GWScopeView: NSView {
 
     }
 
+
+    // MARK: Waveform Drawing
+
     func draw_primary_waveform(waveform: Waveform,
                                color: NSColor) {
-        draw_waveform(waveform, color: color, primary: true)
+        draw_waveform(waveform, amount: amount, color: color, primary: true)
     }
 
     func draw_mod_waveforms(waveform: Waveform,
@@ -208,9 +247,8 @@ class GWScopeView: NSView {
 
     }
 
-//    func draw_mod_waveforms(waveform: Waveform, amount: Float, )
-
     func draw_waveform(waveform: Waveform,
+                       amount: Float,
                        color: NSColor,
                        primary: Bool) {
         let curve = NSBezierPath()
@@ -223,7 +261,7 @@ class GWScopeView: NSView {
             let x = Float(x0.x) * primary_cycles / Float(bounds.width)
             let y = y_value(x, waveform: waveform) * amount
             let sx = x * Float(bounds.width) / primary_cycles
-            let sy = y * Float(bounds.height - 10) / 2 - dot_height / 2
+            let sy = y * Float(bounds.height - 10) / y_height - dot_height / 2
             let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
             curve.moveToPoint(xform.transformPoint(spt))
             curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(primary_h)))
@@ -244,12 +282,12 @@ class GWScopeView: NSView {
             return phase < 0.5 ? +1 : -1
         case .Triangle:
             return phase < 0.5 ? 4 * phase - 1 : -4 * phase + 3
+        case .Sine:
+            return sinf(phase * Float(2 * M_PI))
         case .Random:
             return y_value_random(x)
         case .SampleAndHold:
             return y_value_sample_hold(x)
-        default:
-            return 0
         }
     }
 
@@ -279,6 +317,9 @@ class GWScopeView: NSView {
     func y_value_sample_hold(x: Float) -> Float {
         return y_value_random(floor(x))
     }
+
+
+    // MARK: Background Drawing
 
     func init_bg_cache() {
 

@@ -24,6 +24,12 @@ class GWScopeController: NSObject, NSTabViewDelegate {
         }
     }
 
+    @IBAction func set_amount(sender: AnyObject) {
+        if let ctl = sender as? NSControl {
+            view!.amount = ctl.floatValue
+        }
+    }
+
     func tabView(sender: NSTabView,
                  didSelectTabViewItem tabViewItem: NSTabViewItem?) {
         if let label = tabViewItem?.label {
@@ -64,10 +70,19 @@ class GWScopeController: NSObject, NSTabViewDelegate {
         }
     }
 
-    @IBAction func set_amount(sender: AnyObject) {
-        if let ctl = sender as? NSControl {
-            view!.amount = ctl.floatValue
+    @IBAction func set_af_waveform(sender: AnyObject) {
+        if let button = sender as? NSButton {
+            let title = button.title
+            if title == "Sawtooth" {
+                view!.af_waveform = .SawUp
+            } else if title == "Square" {
+                view!.af_waveform = .Square
+            } else if title == "Triangle" {
+                view!.af_waveform = .Triangle
+            } else if title == "Sine" {
+                view!.af_waveform = .Sine
+            }
         }
     }
-    
+
 }
