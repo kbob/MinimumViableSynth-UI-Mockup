@@ -709,7 +709,7 @@
                     <tabViewItems>
                         <tabViewItem label="None" identifier="1" id="oGS-8D-Kdf">
                             <view key="view" id="YNG-Kd-DVr">
-                                <rect key="frame" x="10" y="33" width="620" height="174"/>
+                                <rect key="frame" x="10" y="33" width="304" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
@@ -809,27 +809,53 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-wP-IoU">
-                                        <rect key="frame" x="453" y="152" width="81" height="19"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Modulation" id="UfW-Q9-zS7">
-                                            <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWB-WX-53V">
-                                        <rect key="frame" x="453" y="128" width="26" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Min" id="3XE-DD-GMq">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnS-f1-6IH">
-                                        <rect key="frame" x="453" y="15" width="21" height="106"/>
-                                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="127" doubleValue="127" tickMarkPosition="right" sliderType="linear" id="TUa-e5-R84"/>
-                                    </slider>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U24-c8-cxg">
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GP1-ki-C0I">
+                                        <rect key="frame" x="455" y="18" width="77" height="153"/>
+                                        <subviews>
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yl-4R-lcc">
+                                                <rect key="frame" x="0.0" y="0.0" width="77" height="153"/>
+                                                <subviews>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-wP-IoU">
+                                                        <rect key="frame" x="-2" y="134" width="81" height="19"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Modulation" id="UfW-Q9-zS7">
+                                                            <font key="font" metaFont="system" size="15"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWB-WX-53V">
+                                                        <rect key="frame" x="-2" y="109" width="26" height="17"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Min" id="3XE-DD-GMq">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnS-f1-6IH">
+                                                        <rect key="frame" x="-2" y="-3" width="21" height="106"/>
+                                                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="127" doubleValue="127" tickMarkPosition="right" sliderType="linear" id="TUa-e5-R84"/>
+                                                    </slider>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U24-c8-cxg">
                                         <rect key="frame" x="504" y="128" width="30" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Max" id="acM-c0-oP3">
                                             <font key="font" metaFont="system"/>
@@ -837,21 +863,15 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDC-bx-cdT">
+                                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDC-bx-cdT">
                                         <rect key="frame" x="513" y="15" width="21" height="106"/>
                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="127" tickMarkPosition="right" sliderType="linear" id="bV5-CV-sxJ"/>
                                     </slider>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="qWB-WX-53V" firstAttribute="leading" secondItem="pVR-wP-IoU" secondAttribute="leading" id="5Qe-D0-yPC"/>
-                                    <constraint firstItem="U24-c8-cxg" firstAttribute="trailing" secondItem="pVR-wP-IoU" secondAttribute="trailing" id="U4M-I3-Mka"/>
-                                    <constraint firstItem="hnS-f1-6IH" firstAttribute="leading" secondItem="pVR-wP-IoU" secondAttribute="leading" id="Vfd-SH-SnH"/>
-                                    <constraint firstItem="lDC-bx-cdT" firstAttribute="trailing" secondItem="pVR-wP-IoU" secondAttribute="trailing" id="VqR-qK-laQ"/>
-                                </constraints>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Oscillator" identifier="" id="sI3-rr-7LI">
-                            <view key="view" ambiguous="YES" id="MOO-7C-5pm">
+                            <view key="view" id="MOO-7C-5pm">
                                 <rect key="frame" x="10" y="33" width="620" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -961,7 +981,7 @@
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Response" identifier="" id="6Dc-mk-HuX">
-                            <view key="view" id="zsI-fC-lPe">
+                            <view key="view" ambiguous="YES" id="zsI-fC-lPe">
                                 <rect key="frame" x="10" y="33" width="620" height="174"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -1096,25 +1116,46 @@
                         <outlet property="delegate" destination="SqC-lQ-Uu3" id="Jm1-3E-Xs5"/>
                     </connections>
                 </tabView>
-                <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSQ-H9-nbi">
-                    <rect key="frame" x="690" y="39" width="21" height="132"/>
-                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="right" sliderType="linear" id="NdD-dZ-dPP"/>
-                    <connections>
-                        <action selector="set_amount:" target="SqC-lQ-Uu3" id="ddV-uw-znf"/>
-                    </connections>
-                </slider>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2kX-aW-ZYP">
-                    <rect key="frame" x="671" y="172" width="58" height="19"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amount" id="Acs-Ld-Pwc">
-                        <font key="font" metaFont="system" size="15"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jkj-Fq-b7g">
+                    <rect key="frame" x="673" y="37" width="54" height="154"/>
+                    <subviews>
+                        <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y1x-hT-qFd">
+                            <rect key="frame" x="0.0" y="0.0" width="54" height="154"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2kX-aW-ZYP">
+                                    <rect key="frame" x="-2" y="135" width="58" height="19"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amount" id="Acs-Ld-Pwc">
+                                        <font key="font" metaFont="system" size="15"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <slider horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSQ-H9-nbi">
+                                    <rect key="frame" x="17" y="-3" width="21" height="132"/>
+                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="right" sliderType="linear" id="NdD-dZ-dPP"/>
+                                    <connections>
+                                        <action selector="set_amount:" target="SqC-lQ-Uu3" id="ddV-uw-znf"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
-            <constraints>
-                <constraint firstItem="aSQ-H9-nbi" firstAttribute="centerX" secondItem="2kX-aW-ZYP" secondAttribute="centerX" id="DWj-NF-Snf"/>
-            </constraints>
             <point key="canvasLocation" x="470" y="930"/>
         </customView>
         <customObject id="SqC-lQ-Uu3" customClass="GWScopeController" customModule="DrawerTest" customModuleProvider="target">
