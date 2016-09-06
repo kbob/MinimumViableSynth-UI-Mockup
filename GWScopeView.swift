@@ -142,7 +142,7 @@ class GWScopeView: NSView {
     let graticule_line_width: CGFloat = 0.2
     let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
 
-    let y_height: Float = 4.0
+    let y_range: Float = 4.0
     let primary_cycles: Float = 3.0
     let primary_h: Float = 4.0
     let mod_h: Float = 1.0
@@ -246,18 +246,30 @@ class GWScopeView: NSView {
 
     func draw_lf_waveforms() {
         if lf_freq_mod_min != 1.0 {
-            draw_amt_waveforms(lf_waveform, shape: GWScopeView.shape_default, freq: lf_freq_mod_min)
+            draw_amt_waveforms(lf_waveform,
+                               shape: GWScopeView.shape_default,
+                               freq: lf_freq_mod_min)
         }
         if lf_freq_mod_max != 1.0 {
-            draw_amt_waveforms(lf_waveform, shape: GWScopeView.shape_default, freq: lf_freq_mod_max)
+            draw_amt_waveforms(lf_waveform,
+                               shape: GWScopeView.shape_default,
+                               freq: lf_freq_mod_max)
         }
         if amount_mod_min != 1.0 {
-            draw_mod_waveform(lf_waveform, shape: GWScopeView.shape_default, freq: 1.0, amt: amount * amount_mod_min)
+            draw_mod_waveform(lf_waveform,
+                              shape: GWScopeView.shape_default,
+                              freq: 1.0,
+                              amt: amount * amount_mod_min)
         }
         if amount_mod_max != 1.0 {
-            draw_mod_waveform(lf_waveform, shape: GWScopeView.shape_default, freq: 1.0, amt: amount * amount_mod_max)
+            draw_mod_waveform(lf_waveform,
+                              shape: GWScopeView.shape_default,
+                              freq: 1.0,
+                              amt: amount * amount_mod_max)
         }
-        draw_primary_waveform(lf_waveform, shape: GWScopeView.shape_default, color: lf_waveform_color)
+        draw_primary_waveform(lf_waveform,
+                              shape: GWScopeView.shape_default,
+                              color: lf_waveform_color)
     }
 
     func draw_af_waveforms() {
@@ -270,18 +282,30 @@ class GWScopeView: NSView {
             draw_af_shape_waveforms(af_waveform, shape: shape_max)
         }
         if af_pitch_mod_min != 1.0 {
-            draw_amt_waveforms(af_waveform, shape: af_shape, freq: af_pitch_mod_min)
+            draw_amt_waveforms(af_waveform,
+                               shape: af_shape,
+                               freq: af_pitch_mod_min)
         }
         if af_pitch_mod_max != 1.0 {
-            draw_amt_waveforms(af_waveform, shape: af_shape, freq: af_pitch_mod_max)
+            draw_amt_waveforms(af_waveform,
+                               shape: af_shape,
+                               freq: af_pitch_mod_max)
         }
         if amount_mod_min != 1.0 {
-            draw_mod_waveform(af_waveform, shape: af_shape, freq: 1.0, amt: amount * amount_mod_min)
+            draw_mod_waveform(af_waveform,
+                              shape: af_shape,
+                              freq: 1.0,
+                              amt: amount * amount_mod_min)
         }
         if amount_mod_max != 1.0 {
-            draw_mod_waveform(af_waveform, shape: af_shape, freq: 1.0, amt: amount * amount_mod_max)
+            draw_mod_waveform(af_waveform,
+                              shape: af_shape,
+                              freq: 1.0,
+                              amt: amount * amount_mod_max)
         }
-        draw_primary_waveform(af_waveform, shape: af_shape, color: af_waveform_color)
+        draw_primary_waveform(af_waveform,
+                              shape: af_shape,
+                              color: af_waveform_color)
     }
 
     func draw_af_shape_waveforms(waveform: Waveform,
@@ -299,22 +323,40 @@ class GWScopeView: NSView {
                             shape: Float,
                             freq: Float) {
         if amount_mod_min != 1.0 {
-            draw_mod_waveform(waveform, shape: shape, freq: freq, amt: amount * amount_mod_min)
+            draw_mod_waveform(waveform,
+                              shape: shape,
+                              freq: freq, amt: amount * amount_mod_min)
         }
         if amount_mod_max != 1.0 {
-            draw_mod_waveform(waveform, shape: shape, freq: freq, amt: amount * amount_mod_max)
+            draw_mod_waveform(waveform,
+                              shape: shape,
+                              freq: freq,
+                              amt: amount * amount_mod_max)
         }
         draw_mod_waveform(waveform, shape: shape, freq: freq, amt: amount)
     }
 
-    func draw_mod_waveform(waveform: Waveform, shape: Float, freq: Float, amt: Float) {
-        draw_waveform(waveform, shape: shape, freq: freq, amt: amt, color: mod_waveform_color, primary: false)
+    func draw_mod_waveform(waveform: Waveform,
+                           shape: Float,
+                           freq: Float,
+                           amt: Float) {
+        draw_waveform(waveform,
+                      shape: shape,
+                      freq: freq,
+                      amt: amt,
+                      color: mod_waveform_color,
+                      primary: false)
     }
 
     func draw_primary_waveform(waveform: Waveform,
                                shape: Float,
                                color: NSColor) {
-        draw_waveform(waveform, shape: shape, freq: 1.0, amt: amount, color: color, primary: true)
+        draw_waveform(waveform,
+                      shape: shape,
+                      freq: 1.0,
+                      amt: amount,
+                      color: color,
+                      primary: true)
     }
 
     func draw_waveform(waveform: Waveform,
@@ -336,7 +378,7 @@ class GWScopeView: NSView {
             let sx = Float(x0.x)
             let x = freq * sx * primary_cycles / Float(bounds.width)
             let y = y_value(x, waveform: waveform, shape: shape) * amt
-            let sy = y * Float(bounds.height - 10) / y_height - dot_height / 2
+            let sy = y * Float(bounds.height - 10) / y_range - dot_height / 2
             let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
             curve.moveToPoint(xform.transformPoint(spt))
             curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(dot_height)))
