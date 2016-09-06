@@ -39,7 +39,7 @@ class GWScopeController: NSObject, NSTabViewDelegate {
                 view!.graph = .LFWaveform
             } else if label == "Oscillator" {
                 view!.graph = .AudioWaveform
-            } else if label == "Response" {
+            } else if label == "Filter" {
                 view!.graph = .Response
             } else if label == "Envelope" {
                 view!.graph = .Envelope
