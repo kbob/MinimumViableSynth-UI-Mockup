@@ -81,7 +81,15 @@ class GWScopeView: NSView {
     }
 
     // Oscillator Parameters
+    static let shape_min: Float = 0.01
+    static let shape_max: Float = 0.50
+    static let shape_default: Float = shape_max
     var af_waveform: Waveform = .SawUp {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var af_shape: Float = shape_default {
         didSet {
             invalidate_graph()
         }
@@ -96,12 +104,12 @@ class GWScopeView: NSView {
             invalidate_graph()
         }
     }
-    var af_freq_mod_min: Float = 1.0 {
+    var af_pitch_mod_min: Float = 1.0 {
         didSet {
             invalidate_graph()
         }
     }
-    var af_freq_mod_max: Float = 1.0 {
+    var af_pitch_mod_max: Float = 1.0 {
         didSet {
             invalidate_graph()
         }
@@ -128,6 +136,8 @@ class GWScopeView: NSView {
     let graticule_color = white
     let lf_waveform_color = peacock
     let af_waveform_color = mustard
+    let mod_waveform_color = peacock
+    let af_spectrum_color = cherry
 
     let graticule_line_width: CGFloat = 0.2
     let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
@@ -215,11 +225,12 @@ class GWScopeView: NSView {
     }
     
     func draw_lf_graph() {
-        draw_primary_waveform(lf_waveform, color: lf_waveform_color)
+        draw_lf_waveforms()
     }
 
     func draw_audio_graph() {
-        draw_primary_waveform(af_waveform, color: af_waveform_color)
+        draw_af_waveforms()
+        draw_af_spectrum()
     }
     
     func draw_response_graph() {
@@ -233,22 +244,83 @@ class GWScopeView: NSView {
 
     // MARK: Waveform Drawing
 
-    func draw_primary_waveform(waveform: Waveform,
-                               color: NSColor) {
-        draw_waveform(waveform, amount: amount, color: color, primary: true)
+    func draw_lf_waveforms() {
+        if lf_freq_mod_min != 1.0 {
+            draw_amt_waveforms(lf_waveform, shape: GWScopeView.shape_default, freq: lf_freq_mod_min)
+        }
+        if lf_freq_mod_max != 1.0 {
+            draw_amt_waveforms(lf_waveform, shape: GWScopeView.shape_default, freq: lf_freq_mod_max)
+        }
+        if amount_mod_min != 1.0 {
+            draw_mod_waveform(lf_waveform, shape: GWScopeView.shape_default, freq: 1.0, amt: amount * amount_mod_min)
+        }
+        if amount_mod_max != 1.0 {
+            draw_mod_waveform(lf_waveform, shape: GWScopeView.shape_default, freq: 1.0, amt: amount * amount_mod_max)
+        }
+        draw_primary_waveform(lf_waveform, shape: GWScopeView.shape_default, color: lf_waveform_color)
     }
 
-    func draw_mod_waveforms(waveform: Waveform,
-                            color: NSColor,
-                            freq_min: Float,
-                            freq_max: Float,
-                            amt_min: Float,
-                            amt_max: Float) {
+    func draw_af_waveforms() {
+        let shape_min = max(GWScopeView.shape_min, af_shape + af_shape_mod_min)
+        let shape_max = min(GWScopeView.shape_max, af_shape + af_shape_mod_max)
+        if shape_min != af_shape {
+            draw_af_shape_waveforms(af_waveform, shape: shape_min)
+        }
+        if shape_max != af_shape {
+            draw_af_shape_waveforms(af_waveform, shape: shape_max)
+        }
+        if af_pitch_mod_min != 1.0 {
+            draw_amt_waveforms(af_waveform, shape: af_shape, freq: af_pitch_mod_min)
+        }
+        if af_pitch_mod_max != 1.0 {
+            draw_amt_waveforms(af_waveform, shape: af_shape, freq: af_pitch_mod_max)
+        }
+        if amount_mod_min != 1.0 {
+            draw_mod_waveform(af_waveform, shape: af_shape, freq: 1.0, amt: amount * amount_mod_min)
+        }
+        if amount_mod_max != 1.0 {
+            draw_mod_waveform(af_waveform, shape: af_shape, freq: 1.0, amt: amount * amount_mod_max)
+        }
+        draw_primary_waveform(af_waveform, shape: af_shape, color: af_waveform_color)
+    }
 
+    func draw_af_shape_waveforms(waveform: Waveform,
+                                 shape: Float) {
+        if af_pitch_mod_min != 1.0 {
+            draw_amt_waveforms(waveform, shape: shape, freq: af_pitch_mod_min)
+        }
+        draw_amt_waveforms(waveform, shape: shape, freq: 1.0)
+        if af_pitch_mod_max != 1.0 {
+            draw_amt_waveforms(waveform, shape: shape, freq: af_pitch_mod_max)
+        }
+    }
+
+    func draw_amt_waveforms(waveform: Waveform,
+                            shape: Float,
+                            freq: Float) {
+        if amount_mod_min != 1.0 {
+            draw_mod_waveform(waveform, shape: shape, freq: freq, amt: amount * amount_mod_min)
+        }
+        if amount_mod_max != 1.0 {
+            draw_mod_waveform(waveform, shape: shape, freq: freq, amt: amount * amount_mod_max)
+        }
+        draw_mod_waveform(waveform, shape: shape, freq: freq, amt: amount)
+    }
+
+    func draw_mod_waveform(waveform: Waveform, shape: Float, freq: Float, amt: Float) {
+        draw_waveform(waveform, shape: shape, freq: freq, amt: amt, color: mod_waveform_color, primary: false)
+    }
+
+    func draw_primary_waveform(waveform: Waveform,
+                               shape: Float,
+                               color: NSColor) {
+        draw_waveform(waveform, shape: shape, freq: 1.0, amt: amount, color: color, primary: true)
     }
 
     func draw_waveform(waveform: Waveform,
-                       amount: Float,
+                       shape: Float,
+                       freq: Float,
+                       amt: Float,
                        color: NSColor,
                        primary: Bool) {
         let curve = NSBezierPath()
@@ -256,21 +328,24 @@ class GWScopeView: NSView {
         let max_i = Int(NSMaxX(bounds))
         let dot_height = primary ? primary_h : mod_h
         for i in min_i...max_i {
+            if (i % 2) == 0 && !primary {
+                continue
+            }
             var x0 = NSPoint(x: CGFloat(i), y: 0)
             x0 = inverse_xform.transformPoint(x0)
-            let x = Float(x0.x) * primary_cycles / Float(bounds.width)
-            let y = y_value(x, waveform: waveform) * amount
-            let sx = x * Float(bounds.width) / primary_cycles
+            let sx = Float(x0.x)
+            let x = freq * sx * primary_cycles / Float(bounds.width)
+            let y = y_value(x, waveform: waveform, shape: shape) * amt
             let sy = y * Float(bounds.height - 10) / y_height - dot_height / 2
             let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
             curve.moveToPoint(xform.transformPoint(spt))
-            curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(primary_h)))
+            curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(dot_height)))
         }
         color.set()
         curve.stroke()
     }
 
-    func y_value(x: Float, waveform: Waveform) -> Float {
+    func y_value(x: Float, waveform: Waveform, shape: Float) -> Float {
 
         let phase = x - floor(x)
         switch waveform {
@@ -279,15 +354,25 @@ class GWScopeView: NSView {
         case .SawDown:
             return -2 * phase + 1
         case .Square:
-            return phase < 0.5 ? +1 : -1
+            return phase < shape ? +1 : shape / (shape - 1)
         case .Triangle:
-            return phase < 0.5 ? 4 * phase - 1 : -4 * phase + 3
+            return y_value_triangle(phase, shape: shape)
         case .Sine:
             return sinf(phase * Float(2 * M_PI))
         case .Random:
             return y_value_random(x)
         case .SampleAndHold:
             return y_value_sample_hold(x)
+        }
+    }
+
+    func y_value_triangle(phase: Float, shape: Float) -> Float {
+        if phase < shape {
+            let slope = 2 / shape
+            return slope * phase - 1
+        } else {
+            let slope = -2 / (1 - shape)
+            return slope * (phase - shape) + 1
         }
     }
 
@@ -306,8 +391,8 @@ class GWScopeView: NSView {
         }
 
         func rand_noise(x: Float, b: Int) -> Float {
-            let a = random(Int(x + ceil(primary_cycles/2)), b: b)
-            let b = random(Int(x + ceil(primary_cycles/2)) + 1, b: b)
+            let a = random(Int(x + 100), b: b)
+            let b = random(Int(x + 100) + 1, b: b)
             return (a + (x-floor(x)) * (b - a)) * 2 - 1
         }
 
@@ -316,6 +401,12 @@ class GWScopeView: NSView {
 
     func y_value_sample_hold(x: Float) -> Float {
         return y_value_random(floor(x))
+    }
+
+
+    // MARK: Waveform Drawing
+
+    func draw_af_spectrum() {
     }
 
 
