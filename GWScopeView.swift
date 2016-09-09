@@ -138,14 +138,25 @@ class GWScopeView: NSView {
     let af_waveform_color = mustard
     let mod_waveform_color = peacock
     let af_spectrum_color = cherry
-
-    let graticule_line_width: CGFloat = 0.2
-    let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
+    let mod_spectrum_color = grape
 
     let y_range: Float = 4.0
     let primary_cycles: Float = 3.0
     let primary_h: Float = 4.0
     let mod_h: Float = 1.0
+
+    static let sp_harmonic_count: UInt = 10
+    let sp_harmonic_count: UInt = GWScopeView.sp_harmonic_count
+    let sp_x_min: Float = 0.5
+    let sp_x_max: Float = Float(sp_harmonic_count) + 0.5
+    let sp_y_min: Float = -0.2
+    let sp_y_max: Float = +2.2
+    let sp_db_floor: Float = -40
+    let sp_primary_spike_width: CGFloat = 2.0
+    let sp_secondary_spike_width: CGFloat = 0.5
+
+    let graticule_line_width: CGFloat = 0.2
+    let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
 
 
     // MARK: Implementation
@@ -154,26 +165,11 @@ class GWScopeView: NSView {
         case Primary
         case Modulated(relative_freq: Float)
     }
-    let xform = NSAffineTransform()
-    var inverse_xform = NSAffineTransform()
+    let co_xform = NSAffineTransform()   // center origin
+    var co_inv_xform = NSAffineTransform()
+    var sp_xform = NSAffineTransform()  // bottom-left origin
+    var sp_inv_xform = NSAffineTransform()
     var bg_cache: NSImage?
-
-
-    // graph style:
-    //      none,
-    //      LF waveform,
-    //      audio waveform + spectrum,
-    //      response,
-    //      envelope
-
-    // primary waveform: (waveform, shape)
-    // waveform modulation: (negative, positive)
-
-    // spectrum: harmonics (5? 8? 10?)
-
-    // response: (Fc, Q, Type)
-
-    // envelope: (amount, Atime, Dtime, Slevel, Rtime)
 
 
     // MARK: NSView Methods
@@ -182,11 +178,20 @@ class GWScopeView: NSView {
 
         super.init(coder: coder)
 
-        // adjust coordinate system: move origin to center.
+        // create waveform coordinate system: move origin to center.
         let bsize = self.bounds.size
-        xform.translateXBy(bsize.width / 2, yBy: bsize.height / 2)
-        inverse_xform.appendTransform(xform)
-        inverse_xform.invert()
+        co_xform.translateXBy(bsize.width / 2, yBy: bsize.height / 2)
+        co_inv_xform.appendTransform(co_xform)
+        co_inv_xform.invert()
+
+        let xoffset = -bsize.width / CGFloat(sp_harmonic_count) / 2
+        let yoffset = bsize.height / 2
+        let xscale = bsize.width / CGFloat(sp_harmonic_count)
+        let yscale = bsize.height / CGFloat(fabsf(sp_db_floor)) / 2
+        sp_xform.translateXBy(xoffset, yBy: yoffset)
+        sp_xform.scaleXBy(xscale, yBy: yscale)
+        sp_inv_xform.appendTransform(sp_xform)
+        sp_inv_xform.invert()
     }
 
     override func drawRect(dirtyRect: NSRect) {
@@ -229,8 +234,8 @@ class GWScopeView: NSView {
     }
 
     func draw_audio_graph() {
-        draw_af_waveforms()
         draw_af_spectrum()
+        draw_af_waveforms()
     }
     
     func draw_response_graph() {
@@ -308,8 +313,7 @@ class GWScopeView: NSView {
                               color: af_waveform_color)
     }
 
-    func draw_af_shape_waveforms(waveform: Waveform,
-                                 shape: Float) {
+    func draw_af_shape_waveforms(waveform: Waveform, shape: Float) {
         if af_pitch_mod_min != 1.0 {
             draw_amt_waveforms(waveform, shape: shape, freq: af_pitch_mod_min)
         }
@@ -374,13 +378,13 @@ class GWScopeView: NSView {
                 continue
             }
             var x0 = NSPoint(x: CGFloat(i), y: 0)
-            x0 = inverse_xform.transformPoint(x0)
+            x0 = co_inv_xform.transformPoint(x0)
             let sx = Float(x0.x)
             let x = freq * sx * primary_cycles / Float(bounds.width)
             let y = y_value(x, waveform: waveform, shape: shape) * amt
             let sy = y * Float(bounds.height - 10) / y_range - dot_height / 2
             let spt = NSMakePoint(CGFloat(sx), CGFloat(sy))
-            curve.moveToPoint(xform.transformPoint(spt))
+            curve.moveToPoint(co_xform.transformPoint(spt))
             curve.relativeLineToPoint(NSPoint(x:0, y:CGFloat(dot_height)))
         }
         color.set()
@@ -446,13 +450,171 @@ class GWScopeView: NSView {
     }
 
 
-    // MARK: Waveform Drawing
+    // MARK: Spectrum Drawing
 
     func draw_af_spectrum() {
+        let shape_min = max(GWScopeView.shape_min, af_shape + af_shape_mod_min)
+        let shape_max = min(GWScopeView.shape_max, af_shape + af_shape_mod_max)
+        if shape_min != af_shape {
+            draw_af_shape_spectra(af_waveform, shape: shape_min)
+        }
+        if shape_max != af_shape {
+            draw_af_shape_spectra(af_waveform, shape: shape_max)
+        }
+        if af_pitch_mod_min != 1.0 {
+            draw_amt_spectra(af_waveform,
+                             shape: af_shape,
+                             freq: af_pitch_mod_min)
+        }
+        if af_pitch_mod_max != 1.0 {
+            draw_amt_spectra(af_waveform,
+                             shape: af_shape,
+                             freq: af_pitch_mod_max)
+        }
+//        if amount_mod_min != 1.0 {
+//            draw_mod_spectrum(af_waveform,
+//                              shape: af_shape,
+//                              freq: 1.0,
+//                              amt: amount * amount_mod_min)
+//        }
+        if amount_mod_max != 1.0 {
+            draw_mod_spectrum(af_waveform,
+                              shape: af_shape,
+                              freq: 1.0,
+                              amt: amount * amount_mod_max)
+        }
+        draw_primary_spectrum(af_waveform,
+                              shape: af_shape,
+                              color: af_spectrum_color)
+    }
+
+    func draw_af_shape_spectra(waveform: Waveform, shape: Float) {
+        if af_pitch_mod_min != 1.0 {
+            draw_amt_spectra(waveform, shape: shape, freq: af_pitch_mod_min)
+        }
+        draw_amt_waveforms(waveform, shape: shape, freq: 1.0)
+        if af_pitch_mod_max != 1.0 {
+            draw_amt_spectra(waveform, shape: shape, freq: af_pitch_mod_max)
+        }
+    }
+
+    func draw_amt_spectra(waveform: Waveform, shape: Float, freq: Float) {
+//        if amount_mod_min != 1.0 {
+//            draw_mod_spectrum(waveform,
+//                              shape: shape,
+//                              freq: freq, amt: amount * amount_mod_min)
+//        }
+        if amount_mod_max != 1.0 {
+            draw_mod_spectrum(waveform,
+                              shape: shape,
+                              freq: freq,
+                              amt: amount * amount_mod_max)
+        }
+        draw_mod_spectrum(waveform, shape: shape, freq: freq, amt: amount)
+    }
+
+    func draw_mod_spectrum(waveform: Waveform,
+                           shape: Float,
+                           freq: Float,
+                           amt: Float) {
+        draw_spectrum(waveform,
+                      shape: shape,
+                      freq: freq,
+                      amt: amt,
+                      color: mod_spectrum_color,
+                      primary: false)
+    }
+
+    func draw_primary_spectrum(waveform: Waveform,
+                               shape: Float,
+                               color: NSColor)
+    {
+        draw_spectrum(waveform,
+                      shape: shape,
+                      freq: 1.0,
+                      amt: amount,
+                      color: af_spectrum_color,
+                      primary: true)
+    }
+
+    func draw_spectrum(waveform: Waveform,
+                       shape: Float,
+                       freq: Float,
+                       amt: Float,
+                       color: NSColor,
+                       primary: Bool) {
+
+        func sp_point(x: Float, _ y: Float) -> NSPoint {
+            return sp_xform.transformPoint(NSMakePoint(CGFloat(x), CGFloat(y)))
+        }
+
+        let spikes_curve = NSBezierPath()
+        if primary {
+
+            // Draw baseline
+            let bl_curve = NSBezierPath()
+            let x0 = Float(1)
+            let x1 = Float(sp_harmonic_count + 1)
+            let y = sp_db_floor
+            let p0 = sp_point(x0, y)
+            let p1 = sp_point(x1, y)
+            bl_curve.moveToPoint(p0)
+            bl_curve.lineToPoint(p1)
+            color.set()
+            bl_curve.stroke()
+
+            // Make spikes thick
+            spikes_curve.lineWidth = sp_primary_spike_width
+        } else {
+            spikes_curve.lineWidth = sp_secondary_spike_width
+        }
+
+        var h: UInt = 0
+        let x_limit = Float(GWScopeView.sp_harmonic_count) + 0.5
+        while true {
+            h += 1
+            let x = freq * Float(h)
+            if x > x_limit {
+                break
+            }
+//        for h in 1...GWScopeView.sp_harmonic_count {
+            let mag = amt * harmonic_magnitude(waveform,
+                                               shape: shape,
+                                               harmonic: h)
+//            let x = freq * Float(h)
+            let y0 = Float(sp_db_floor)
+            let y1 = 20 * log10(mag)
+            let p0 = sp_point(x, y0)
+            let p1 = sp_point(x, y1)
+            spikes_curve.moveToPoint(p0)
+            spikes_curve.lineToPoint(p1)
+        }
+
+        color.set()
+        spikes_curve.stroke()
+    }
+
+    func harmonic_magnitude(waveform: Waveform,
+                            shape: Float,
+                            harmonic: UInt)
+        -> Float {
+            let hf = Float(harmonic)
+            switch waveform {
+            case .SawUp:
+                return 1 / hf
+            case .Square:
+                return 1 / hf * abs(sinf(Float(M_PI) * hf * shape))
+            case .Triangle:
+                return 1 / (hf * hf) * abs(sinf(Float(M_PI) * hf * shape))
+            case .Sine:
+                return harmonic == 1 ? 1 : 0
+            default:
+                return 0
+            }
     }
 
 
-    // MARK: Background Drawing
+    // MARK: Static Background Drawing
 
     func init_bg_cache() {
 
@@ -487,11 +649,11 @@ class GWScopeView: NSView {
         defer {
             cgc.restoreGraphicsState()
         }
-        xform.concat()
+        co_xform.concat()
 
         let origin = NSMakePoint(0, 0)
-        let min = inverse_xform.transformPoint(bounds.origin)
-        let max = inverse_xform.transformPoint(NSMakePoint(NSMaxX(bounds),
+        let min = co_inv_xform.transformPoint(bounds.origin)
+        let max = co_inv_xform.transformPoint(NSMakePoint(NSMaxX(bounds),
                                                            NSMaxY(bounds)))
 
         // axes.

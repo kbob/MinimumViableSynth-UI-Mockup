@@ -960,7 +960,7 @@
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oll-kb-Nct">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Oll-kb-Nct">
                                                         <rect key="frame" x="-1" y="119" width="80" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Sawtooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Rku-Kb-etW">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -970,7 +970,7 @@
                                                             <action selector="set_af_waveform:" target="SqC-lQ-Uu3" id="Q9v-PP-Khh"/>
                                                         </connections>
                                                     </button>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ute-bh-WrL">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="ute-bh-WrL">
                                                         <rect key="frame" x="-1" y="95" width="65" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Square" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RPZ-7I-SZ6">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -980,7 +980,7 @@
                                                             <action selector="set_af_waveform:" target="SqC-lQ-Uu3" id="cCx-Tf-ynk"/>
                                                         </connections>
                                                     </button>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-Ij-Ubq">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Xax-Ij-Ubq">
                                                         <rect key="frame" x="-1" y="71" width="71" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="A9k-Bb-kBq">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -990,7 +990,7 @@
                                                             <action selector="set_af_waveform:" target="SqC-lQ-Uu3" id="eQ9-7Q-nLj"/>
                                                         </connections>
                                                     </button>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Ei-nBw">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Ei-nBw">
                                                         <rect key="frame" x="-1" y="47" width="49" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Sine" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3H7-Dc-8O4">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1245,28 +1245,28 @@
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hl4-zh-ywv">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="hl4-zh-ywv">
                                                         <rect key="frame" x="-1" y="139" width="79" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Low Pass" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kOh-sY-der">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0M-gH-548">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="A0M-gH-548">
                                                         <rect key="frame" x="-1" y="115" width="83" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="High Pass" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kHQ-Sr-0LD">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7G-X2-hTO">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="q7G-X2-hTO">
                                                         <rect key="frame" x="-1" y="91" width="85" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Band Pass" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="i0C-co-nfy">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
-                                                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cC3-Gx-4Lw">
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="cC3-Gx-4Lw">
                                                         <rect key="frame" x="-1" y="67" width="95" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Band Reject" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="gMD-MM-XOy">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
