@@ -84,6 +84,7 @@ class GWScopeView: NSView {
     static let shape_min: Float = 0.01
     static let shape_max: Float = 0.50
     static let shape_default: Float = shape_max
+    let shape_default: Float = GWScopeView.shape_default
     var af_waveform: Waveform = .SawUp {
         didSet {
             invalidate_graph()
@@ -133,12 +134,12 @@ class GWScopeView: NSView {
     let PIXEL_PITCH_mm = 0.135
 
     let bg_color = carbon
-    let graticule_color = white
-    let lf_waveform_color = peacock
-    let af_waveform_color = mustard
+    let graticule_color  = white
+    let lf_waveform_color  = peacock
+    let af_waveform_color  = mustard
     let mod_waveform_color = peacock
-    let af_spectrum_color = cherry
-    let mod_spectrum_color = grape
+    let af_spectrum_color  = cherry
+    let mod_spectrum_color = magenta
 
     let y_range: Float = 4.0
     let primary_cycles: Float = 3.0
@@ -147,13 +148,9 @@ class GWScopeView: NSView {
 
     static let sp_harmonic_count: UInt = 10
     let sp_harmonic_count: UInt = GWScopeView.sp_harmonic_count
-    let sp_x_min: Float = 0.5
-    let sp_x_max: Float = Float(sp_harmonic_count) + 0.5
-    let sp_y_min: Float = -0.2
-    let sp_y_max: Float = +2.2
     let sp_db_floor: Float = -40
     let sp_primary_spike_width: CGFloat = 2.0
-    let sp_secondary_spike_width: CGFloat = 0.5
+    let sp_secondary_spike_width: CGFloat = 1.0
 
     let graticule_line_width: CGFloat = 0.2
     let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
@@ -252,28 +249,28 @@ class GWScopeView: NSView {
     func draw_lf_waveforms() {
         if lf_freq_mod_min != 1.0 {
             draw_amt_waveforms(lf_waveform,
-                               shape: GWScopeView.shape_default,
+                               shape: shape_default,
                                freq: lf_freq_mod_min)
         }
         if lf_freq_mod_max != 1.0 {
             draw_amt_waveforms(lf_waveform,
-                               shape: GWScopeView.shape_default,
+                               shape: shape_default,
                                freq: lf_freq_mod_max)
         }
         if amount_mod_min != 1.0 {
             draw_mod_waveform(lf_waveform,
-                              shape: GWScopeView.shape_default,
+                              shape: shape_default,
                               freq: 1.0,
                               amt: amount * amount_mod_min)
         }
         if amount_mod_max != 1.0 {
             draw_mod_waveform(lf_waveform,
-                              shape: GWScopeView.shape_default,
+                              shape: shape_default,
                               freq: 1.0,
                               amt: amount * amount_mod_max)
         }
         draw_primary_waveform(lf_waveform,
-                              shape: GWScopeView.shape_default,
+                              shape: shape_default,
                               color: lf_waveform_color)
     }
 
@@ -471,12 +468,7 @@ class GWScopeView: NSView {
                              shape: af_shape,
                              freq: af_pitch_mod_max)
         }
-//        if amount_mod_min != 1.0 {
-//            draw_mod_spectrum(af_waveform,
-//                              shape: af_shape,
-//                              freq: 1.0,
-//                              amt: amount * amount_mod_min)
-//        }
+        // skip amount_mod_min -- it is behind other spikes.
         if amount_mod_max != 1.0 {
             draw_mod_spectrum(af_waveform,
                               shape: af_shape,
@@ -499,11 +491,7 @@ class GWScopeView: NSView {
     }
 
     func draw_amt_spectra(waveform: Waveform, shape: Float, freq: Float) {
-//        if amount_mod_min != 1.0 {
-//            draw_mod_spectrum(waveform,
-//                              shape: shape,
-//                              freq: freq, amt: amount * amount_mod_min)
-//        }
+        // skip amount_mod_min -- it is behind other spikes.
         if amount_mod_max != 1.0 {
             draw_mod_spectrum(waveform,
                               shape: shape,
@@ -551,7 +539,7 @@ class GWScopeView: NSView {
         let spikes_curve = NSBezierPath()
         if primary {
 
-            // Draw baseline
+            // draw baseline.
             let bl_curve = NSBezierPath()
             let x0 = Float(1)
             let x1 = Float(sp_harmonic_count + 1)
@@ -569,19 +557,18 @@ class GWScopeView: NSView {
             spikes_curve.lineWidth = sp_secondary_spike_width
         }
 
+        // draw harmonic spikes.
         var h: UInt = 0
-        let x_limit = Float(GWScopeView.sp_harmonic_count) + 0.5
+        let x_limit = Float(sp_harmonic_count) + 0.5
         while true {
             h += 1
             let x = freq * Float(h)
             if x > x_limit {
                 break
             }
-//        for h in 1...GWScopeView.sp_harmonic_count {
             let mag = amt * harmonic_magnitude(waveform,
                                                shape: shape,
                                                harmonic: h)
-//            let x = freq * Float(h)
             let y0 = Float(sp_db_floor)
             let y1 = 20 * log10(mag)
             let p0 = sp_point(x, y0)
