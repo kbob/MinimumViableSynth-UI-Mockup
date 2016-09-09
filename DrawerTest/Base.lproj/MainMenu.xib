@@ -701,6 +701,9 @@
         </window>
         <customObject id="SqC-lQ-Uu3" customClass="GWScopeController" customModule="DrawerTest" customModuleProvider="target">
             <connections>
+                <outlet property="amount1" destination="R9F-IV-xTz" id="ehH-i7-qRh"/>
+                <outlet property="amount2" destination="Drl-DX-Nnj" id="tE3-sc-8br"/>
+                <outlet property="amount3" destination="5Ue-x3-IKk" id="5Yl-WW-4or"/>
                 <outlet property="tabView" destination="JQS-YE-56r" id="4FP-4j-Qhd"/>
                 <outlet property="view" destination="2Y2-70-Chf" id="jIJ-v3-bMN"/>
             </connections>
@@ -1778,7 +1781,7 @@
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W3D-uC-hjb">
                             <rect key="frame" x="3" y="144" width="61" height="19"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amount" id="mfU-vL-QlO">
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="Amount" id="mfU-vL-QlO">
                                 <font key="font" metaFont="system" size="16"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1792,7 +1795,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="136" id="xD3-dM-hOJ"/>
                                     </constraints>
-                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="rs9-rd-csB"/>
+                                    <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="rs9-rd-csB"/>
                                     <connections>
                                         <action selector="set_amount:" target="SqC-lQ-Uu3" id="V8J-VG-OrG"/>
                                     </connections>
@@ -1813,14 +1816,14 @@
                                             <subviews>
                                                 <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-DX-Nnj">
                                                     <rect key="frame" x="-2" y="-3" width="21" height="116"/>
-                                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="iEz-JH-VKg"/>
+                                                    <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="iEz-JH-VKg"/>
                                                     <connections>
                                                         <action selector="set_amount_mod_min:" target="SqC-lQ-Uu3" id="GwC-0f-Ugz"/>
                                                     </connections>
                                                 </slider>
                                                 <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="5Ue-x3-IKk">
                                                     <rect key="frame" x="23" y="-3" width="21" height="116"/>
-                                                    <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="HK3-CF-i7l"/>
+                                                    <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="HK3-CF-i7l"/>
                                                     <connections>
                                                         <action selector="set_amount_mod_max:" target="SqC-lQ-Uu3" id="zBd-qk-ejL"/>
                                                     </connections>

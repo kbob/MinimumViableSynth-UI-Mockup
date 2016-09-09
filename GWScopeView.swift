@@ -6,6 +6,8 @@
 //  Copyright © 2016 kbobsoft.com. All rights reserved.
 //
 
+// MARK: Grumpy Wizards' 'Scope View
+
 import Cocoa
 
 class GWScopeView: NSView {
@@ -236,9 +238,20 @@ class GWScopeView: NSView {
     }
     
     func draw_response_graph() {
+        let pt_size: CGFloat = 48
+        let font = NSFont(name: "Lato Light", size: pt_size)!
+        let str = "Bob hasn't figured this out yet."
+        let att = [
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: lime]
+        let mystring = NSMutableAttributedString(string: str, attributes: att)
+        mystring.setAlignment(NSCenterTextAlignment,
+                              range: NSRange(location: 0,
+                                             length: mystring.length))
 
+        mystring.drawInRect(self.bounds)
     }
-    
+
     func draw_envelope_graph() {
 
     }
@@ -484,7 +497,7 @@ class GWScopeView: NSView {
         if af_pitch_mod_min != 1.0 {
             draw_amt_spectra(waveform, shape: shape, freq: af_pitch_mod_min)
         }
-        draw_amt_waveforms(waveform, shape: shape, freq: 1.0)
+        draw_amt_spectra(waveform, shape: shape, freq: 1.0)
         if af_pitch_mod_max != 1.0 {
             draw_amt_spectra(waveform, shape: shape, freq: af_pitch_mod_max)
         }

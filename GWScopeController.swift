@@ -6,11 +6,19 @@
 //  Copyright © 2016 kbobsoft.com. All rights reserved.
 //
 
+// MARK: Grumpy Wizards' 'Scope Controller
+
+
 import Cocoa
 
 class GWScopeController: NSObject, NSTabViewDelegate {
     @IBOutlet weak var view: GWScopeView?
     @IBOutlet weak var tabView: NSTabView?
+    // Doesn't seem to work...
+    // @IBOutlet var amount_collection: [NSControl]
+    @IBOutlet weak var amount1: NSControl?
+    @IBOutlet weak var amount2: NSControl?
+    @IBOutlet weak var amount3: NSControl?
 
     let amount_default: Float = 1.0
     let amount_mod_min_default: Float = 1.0
@@ -46,6 +54,9 @@ class GWScopeController: NSObject, NSTabViewDelegate {
             view!.af_pitch_mod_min = af_pitch_mod_min_default
             view!.af_pitch_mod_max = af_pitch_mod_max_default
         }
+        amount1?.enabled = false
+        amount2?.enabled = false
+        amount3?.enabled = false
     }
 
     @IBAction func set_amount(sender: AnyObject) {
@@ -71,14 +82,19 @@ class GWScopeController: NSObject, NSTabViewDelegate {
         if let label = tabViewItem?.label {
             if label == "None" {
                 view!.graph = .None
+                disable_amount()
             } else if label == "LFO" {
                 view!.graph = .LFWaveform
+                enable_amount()
             } else if label == "Oscillator" {
                 view!.graph = .AudioWaveform
+                enable_amount()
             } else if label == "Filter" {
                 view!.graph = .Response
+                disable_amount()
             } else if label == "Envelope" {
                 view!.graph = .Envelope
+                enable_amount()
             } else {
                 view!.graph = .None
             }
@@ -164,6 +180,18 @@ class GWScopeController: NSObject, NSTabViewDelegate {
         if let ctl = sender as? NSControl {
             view!.af_pitch_mod_max = 1 + ctl.floatValue / 100 * 2
         }
+    }
+
+    func enable_amount() {
+        amount1?.enabled = true
+        amount2?.enabled = true
+        amount3?.enabled = true
+    }
+
+    func disable_amount() {
+        amount1?.enabled = false
+        amount2?.enabled = false
+        amount3?.enabled = false
     }
 
 }
