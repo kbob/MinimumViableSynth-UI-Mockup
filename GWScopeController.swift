@@ -59,6 +59,9 @@ class GWScopeController: NSObject, NSTabViewDelegate {
         amount3?.enabled = false
     }
 
+
+    // MARK: Global Control
+
     @IBAction func set_amount(sender: AnyObject) {
         if let ctl = sender as? NSControl {
             view!.amount = ctl.floatValue / 100
@@ -103,6 +106,8 @@ class GWScopeController: NSObject, NSTabViewDelegate {
         }
     }
 
+    // MARK: LF Oscillator Control
+
     @IBAction func set_lf_waveform(sender: AnyObject) {
         if let button = sender as? NSButton {
             let title = button.title
@@ -133,6 +138,10 @@ class GWScopeController: NSObject, NSTabViewDelegate {
             view!.lf_freq_mod_max = 1 + ctl.floatValue / 100 * 2
         }
     }
+
+
+    // MARK: Audio Frequency Oscillator Control
+
 
     @IBAction func set_af_waveform(sender: AnyObject) {
         if let button = sender as? NSButton {
@@ -181,6 +190,36 @@ class GWScopeController: NSObject, NSTabViewDelegate {
             view!.af_pitch_mod_max = 1 + ctl.floatValue / 100 * 2
         }
     }
+
+
+    // MARK: Envelope Control
+
+    @IBAction func set_attack(sender: AnyObject) {
+        if let ctl = sender as? NSControl {
+            view!.env_attack = ctl.floatValue / 100
+        }
+    }
+
+    @IBAction func set_decay(sender: AnyObject) {
+        if let ctl = sender as? NSControl {
+            view!.env_decay = ctl.floatValue / 100
+        }
+    }
+
+    @IBAction func set_sustain(sender: AnyObject) {
+        if let ctl = sender as? NSControl {
+            view!.env_sustain = ctl.floatValue / 100
+        }
+    }
+
+    @IBAction func set_release(sender: AnyObject) {
+        if let ctl = sender as? NSControl {
+            view!.env_release = ctl.floatValue / 100
+        }
+    }
+
+
+    // MARK: Utilities
 
     func enable_amount() {
         amount1?.enabled = true

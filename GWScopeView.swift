@@ -6,6 +6,7 @@
 //  Copyright © 2016 kbobsoft.com. All rights reserved.
 //
 
+
 // MARK: Grumpy Wizards' 'Scope View
 
 import Cocoa
@@ -118,9 +119,26 @@ class GWScopeView: NSView {
         }
     }
 
-
     // Filter Parameters
-    var cutoff: Float = 20000 {
+    // TBD
+
+    // Envelope Parameters
+    var env_attack: Float = 0.5 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var env_decay: Float = 0.5 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var env_sustain: Float = 0.5 {
+        didSet {
+            invalidate_graph()
+        }
+    }
+    var env_release: Float = 0.5 {
         didSet {
             invalidate_graph()
         }
@@ -135,13 +153,15 @@ class GWScopeView: NSView {
 
     let PIXEL_PITCH_mm = 0.135
 
-    let bg_color = carbon
-    let graticule_color  = white
+    let bg_color           = carbon
+    let graticule_color    = white
     let lf_waveform_color  = peacock
     let af_waveform_color  = mustard
     let mod_waveform_color = peacock
     let af_spectrum_color  = cherry
     let mod_spectrum_color = magenta
+    let env_fill_color     = grape
+    let env_stroke_color   = peacock
 
     let y_range: Float = 4.0
     let primary_cycles: Float = 3.0
@@ -164,10 +184,11 @@ class GWScopeView: NSView {
         case Primary
         case Modulated(relative_freq: Float)
     }
-    let co_xform = NSAffineTransform()   // center origin
-    var co_inv_xform = NSAffineTransform()
-    var sp_xform = NSAffineTransform()  // bottom-left origin
-    var sp_inv_xform = NSAffineTransform()
+    let co_xform      = NSAffineTransform()   // center origin
+    var co_inv_xform  = NSAffineTransform()
+    var sp_xform      = NSAffineTransform()  // bottom-left origin
+    var env_xform     = NSAffineTransform()
+    var env_inv_xform = NSAffineTransform()
     var bg_cache: NSImage?
 
 
@@ -177,20 +198,36 @@ class GWScopeView: NSView {
 
         super.init(coder: coder)
 
-        // create waveform coordinate system: move origin to center.
-        let bsize = self.bounds.size
-        co_xform.translateXBy(bsize.width / 2, yBy: bsize.height / 2)
-        co_inv_xform.appendTransform(co_xform)
-        co_inv_xform.invert()
+        let bsize = bounds.size
 
-        let xoffset = -bsize.width / CGFloat(sp_harmonic_count) / 2
-        let yoffset = bsize.height / 2
-        let xscale = bsize.width / CGFloat(sp_harmonic_count)
-        let yscale = bsize.height / CGFloat(fabsf(sp_db_floor)) / 2
-        sp_xform.translateXBy(xoffset, yBy: yoffset)
-        sp_xform.scaleXBy(xscale, yBy: yscale)
-        sp_inv_xform.appendTransform(sp_xform)
-        sp_inv_xform.invert()
+        // create waveform coordinate system: move origin to center.
+        do {
+            co_xform.translateXBy(bsize.width / 2, yBy: bsize.height / 2)
+            co_inv_xform.appendTransform(co_xform)
+            co_inv_xform.invert()
+        }
+
+        // create spectrum coordinate system: origin off the bottom left
+        do {
+            let xoffset = -bsize.width / CGFloat(sp_harmonic_count) / 2
+            let yoffset = bsize.height / 2
+            let xscale = bsize.width / CGFloat(sp_harmonic_count)
+            let yscale = bsize.height / CGFloat(fabsf(sp_db_floor)) / 2
+            sp_xform.translateXBy(xoffset, yBy: yoffset)
+            sp_xform.scaleXBy(xscale, yBy: yscale)
+        }
+
+        // create envelope coordinate system: origin at center left
+        do {
+            let xoffset = CGFloat(0)
+            let yoffset = bsize.height / 2
+            let xscale = bsize.width / 3
+            let yscale = bsize.height / 2
+            env_xform.translateXBy(xoffset, yBy: yoffset)
+            env_xform.scaleXBy(xscale, yBy: yscale)
+            env_inv_xform.appendTransform(env_xform)
+            env_inv_xform.invert()
+        }
     }
 
     override func drawRect(dirtyRect: NSRect) {
@@ -243,7 +280,7 @@ class GWScopeView: NSView {
         let str = "Bob hasn't figured this out yet."
         let att = [
             NSFontAttributeName: font,
-            NSForegroundColorAttributeName: lime]
+            NSForegroundColorAttributeName: cherry]
         let mystring = NSMutableAttributedString(string: str, attributes: att)
         mystring.setAlignment(NSCenterTextAlignment,
                               range: NSRange(location: 0,
@@ -254,6 +291,37 @@ class GWScopeView: NSView {
 
     func draw_envelope_graph() {
 
+        let env_amt = amount * 2 - 1
+        func env_point(x: Float, _ y: Float) -> NSPoint {
+            return env_xform.transformPoint(NSMakePoint(CGFloat(x),
+                CGFloat(env_amt * y)))
+        }
+
+        let env = NSBezierPath()
+
+        let x0 = Float(0),         y0 = Float(0)
+        let x1 = env_attack,       y1 = Float(1)
+        let x2 = x1 + env_decay,   y2 = env_sustain
+        let x3 = Float(2),         y3 = env_sustain
+        let x4 = x3 + env_release, y4 = Float(0)
+        let x5 = Float(3),         y5 = Float(0)
+
+        env.moveToPoint(env_point(x0, y0))
+        env.lineToPoint(env_point(x1, y1))
+        env.lineToPoint(env_point(x2, y2))
+        env.lineToPoint(env_point(x3, y3))
+        env.lineToPoint(env_point(x4, y4))
+        env.lineToPoint(env_point(x5, y5))
+//        env.lineToPoint(env_point(x4, -y4))
+//        env.lineToPoint(env_point(x3, -y3))
+//        env.lineToPoint(env_point(x2, -y2))
+//        env.lineToPoint(env_point(x1, -y1))
+//        env.lineToPoint(env_point(x0, -y0))
+
+//        env_fill_color.set()
+//        env.fill()
+        env_stroke_color.set()
+        env.stroke()
     }
 
 
@@ -607,7 +675,7 @@ class GWScopeView: NSView {
             case .Triangle:
                 return 1 / (hf * hf) * abs(sinf(Float(M_PI) * hf * shape))
             case .Sine:
-                return harmonic == 1 ? 1 : 0
+                return harmonic == 1 ? 1 : powf(10, sp_db_floor / 20)
             default:
                 return 0
             }
