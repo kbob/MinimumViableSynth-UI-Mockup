@@ -174,6 +174,9 @@ class GWScopeView: NSView {
     let sp_primary_spike_width: CGFloat = 2.0
     let sp_secondary_spike_width: CGFloat = 1.0
 
+    let env_primary_curve_width = 2.0
+    let env_mod_curve_width = 1.0
+
     let graticule_line_width: CGFloat = 0.2
     let graticule_dash_pattern: [CGFloat] = [5.0, 5.0]
 
@@ -222,7 +225,7 @@ class GWScopeView: NSView {
             let xoffset = CGFloat(0)
             let yoffset = bsize.height / 2
             let xscale = bsize.width / 3
-            let yscale = bsize.height / 2
+            let yscale = bsize.height / CGFloat(y_range)
             env_xform.translateXBy(xoffset, yBy: yoffset)
             env_xform.scaleXBy(xscale, yBy: yscale)
             env_inv_xform.appendTransform(env_xform)
@@ -290,38 +293,14 @@ class GWScopeView: NSView {
     }
 
     func draw_envelope_graph() {
-
-        let env_amt = amount * 2 - 1
-        func env_point(x: Float, _ y: Float) -> NSPoint {
-            return env_xform.transformPoint(NSMakePoint(CGFloat(x),
-                CGFloat(env_amt * y)))
+        let scaled_amt = 2 * amount - 1
+        if amount_mod_min != 1.0 {
+            draw_envelope(scaled_amt * amount_mod_min, primary: false)
         }
-
-        let env = NSBezierPath()
-
-        let x0 = Float(0),         y0 = Float(0)
-        let x1 = env_attack,       y1 = Float(1)
-        let x2 = x1 + env_decay,   y2 = env_sustain
-        let x3 = Float(2),         y3 = env_sustain
-        let x4 = x3 + env_release, y4 = Float(0)
-        let x5 = Float(3),         y5 = Float(0)
-
-        env.moveToPoint(env_point(x0, y0))
-        env.lineToPoint(env_point(x1, y1))
-        env.lineToPoint(env_point(x2, y2))
-        env.lineToPoint(env_point(x3, y3))
-        env.lineToPoint(env_point(x4, y4))
-        env.lineToPoint(env_point(x5, y5))
-//        env.lineToPoint(env_point(x4, -y4))
-//        env.lineToPoint(env_point(x3, -y3))
-//        env.lineToPoint(env_point(x2, -y2))
-//        env.lineToPoint(env_point(x1, -y1))
-//        env.lineToPoint(env_point(x0, -y0))
-
-//        env_fill_color.set()
-//        env.fill()
-        env_stroke_color.set()
-        env.stroke()
+        if amount_mod_max != 1.0 {
+            draw_envelope(scaled_amt * amount_mod_max, primary: false)
+        }
+        draw_envelope(scaled_amt, primary: true)
     }
 
 
@@ -681,6 +660,45 @@ class GWScopeView: NSView {
             }
     }
 
+
+    // MARK: Envelope Drawing
+
+    func draw_envelope(amt: Float, primary: Bool) {
+
+        func env_point(x: Float, _ y: Float) -> NSPoint {
+            return env_xform.transformPoint(NSMakePoint(CGFloat(x),
+                CGFloat(amt * y)))
+        }
+
+        let env = NSBezierPath()
+        let line_width = primary ? env_primary_curve_width : env_mod_curve_width
+        env.lineWidth = CGFloat(line_width)
+
+        let x0 = Float(0),         y0 = Float(0)
+        let x1 = env_attack,       y1 = Float(1)
+        let x2 = x1 + env_decay,   y2 = env_sustain
+        let x3 = Float(2),         y3 = env_sustain
+        let x4 = x3 + env_release, y4 = Float(0)
+        let x5 = Float(3),         y5 = Float(0)
+
+        env.moveToPoint(env_point(x0, y0))
+        env.lineToPoint(env_point(x1, y1))
+        env.lineToPoint(env_point(x2, y2))
+        env.lineToPoint(env_point(x3, y3))
+        env.lineToPoint(env_point(x4, y4))
+        env.lineToPoint(env_point(x5, y5))
+        //        env.lineToPoint(env_point(x4, -y4))
+        //        env.lineToPoint(env_point(x3, -y3))
+        //        env.lineToPoint(env_point(x2, -y2))
+        //        env.lineToPoint(env_point(x1, -y1))
+        //        env.lineToPoint(env_point(x0, -y0))
+
+        //        env_fill_color.set()
+        //        env.fill()
+        env_stroke_color.set()
+        env.stroke()
+
+    }
 
     // MARK: Static Background Drawing
 

@@ -672,7 +672,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="840" height="561"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="840" height="561"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -725,13 +725,13 @@
             <rect key="frame" x="0.0" y="0.0" width="590" height="281"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <tabView verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="JQS-YE-56r" userLabel="Tab View: None, LFO, Oscillator, Filter, Envelope">
+                <tabView verticalHuggingPriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQS-YE-56r" userLabel="Tab View: None, LFO, Oscillator, Filter, Envelope">
                     <rect key="frame" x="50" y="10" width="440" height="249"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="None" identifier="1" id="01S-U4-dVd">
                             <view key="view" id="Kej-rB-CTi">
-                                <rect key="frame" x="10" y="33" width="420" height="223"/>
+                                <rect key="frame" x="10" y="33" width="423" height="203"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
@@ -856,10 +856,10 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V2L-X5-hZU" userLabel="Stack - Pitch 2">
-                                                        <rect key="frame" x="18" y="0.0" width="42" height="136"/>
+                                                        <rect key="frame" x="19" y="0.0" width="40" height="136"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WoM-VU-uDG">
-                                                                <rect key="frame" x="6" y="119" width="31" height="17"/>
+                                                                <rect key="frame" x="5" y="119" width="31" height="17"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mod" id="Ja2-69-D39">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -867,17 +867,17 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4hC-i9-YDZ" userLabel="Stack - Pitch 3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="111"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="111"/>
                                                                 <subviews>
                                                                     <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="wZT-JZ-M3f">
-                                                                        <rect key="frame" x="-2" y="-3" width="21" height="116"/>
+                                                                        <rect key="frame" x="-2" y="-3" width="20" height="116"/>
                                                                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="Nn2-3S-8h9"/>
                                                                         <connections>
                                                                             <action selector="set_lf_freq_mod_min:" target="SqC-lQ-Uu3" id="LLS-8V-axa"/>
                                                                         </connections>
                                                                     </slider>
                                                                     <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="g2y-Tk-oK4">
-                                                                        <rect key="frame" x="23" y="-3" width="21" height="116"/>
+                                                                        <rect key="frame" x="22" y="-3" width="20" height="116"/>
                                                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="vNt-VY-f6i"/>
                                                                         <connections>
                                                                             <action selector="set_lf_freq_mod_max:" target="SqC-lQ-Uu3" id="j9w-Vz-ZTh"/>
@@ -949,22 +949,22 @@
                                 <rect key="frame" x="10" y="33" width="420" height="203"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V2B-wx-0gi">
-                                        <rect key="frame" x="20" y="20" width="380" height="163"/>
+                                    <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V2B-wx-0gi">
+                                        <rect key="frame" x="20" y="0.0" width="383" height="183"/>
                                         <subviews>
-                                            <stackView orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-hf-iWR" userLabel="Stack - Waveform">
-                                                <rect key="frame" x="0.0" y="0.0" width="77" height="163"/>
+                                            <stackView orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-hf-iWR" userLabel="Stack - Waveform">
+                                                <rect key="frame" x="0.0" y="0.0" width="77" height="183"/>
                                                 <beginningViews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9RB-9Y-WTr">
-                                                        <rect key="frame" x="-2" y="144" width="78" height="19"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9RB-9Y-WTr">
+                                                        <rect key="frame" x="-2" y="164" width="78" height="19"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Waveform" id="oNu-lk-SHo">
                                                             <font key="font" metaFont="system" size="16"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Oll-kb-Nct">
-                                                        <rect key="frame" x="-1" y="119" width="80" height="18"/>
+                                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oll-kb-Nct">
+                                                        <rect key="frame" x="-1" y="139" width="80" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Sawtooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Rku-Kb-etW">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -973,8 +973,8 @@
                                                             <action selector="set_af_waveform:" target="SqC-lQ-Uu3" id="Q9v-PP-Khh"/>
                                                         </connections>
                                                     </button>
-                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="ute-bh-WrL">
-                                                        <rect key="frame" x="-1" y="95" width="65" height="18"/>
+                                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ute-bh-WrL">
+                                                        <rect key="frame" x="-1" y="115" width="65" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Square" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RPZ-7I-SZ6">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -983,8 +983,8 @@
                                                             <action selector="set_af_waveform:" target="SqC-lQ-Uu3" id="cCx-Tf-ynk"/>
                                                         </connections>
                                                     </button>
-                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Xax-Ij-Ubq">
-                                                        <rect key="frame" x="-1" y="71" width="71" height="18"/>
+                                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-Ij-Ubq">
+                                                        <rect key="frame" x="-1" y="91" width="71" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Triangle" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="A9k-Bb-kBq">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -993,8 +993,8 @@
                                                             <action selector="set_af_waveform:" target="SqC-lQ-Uu3" id="eQ9-7Q-nLj"/>
                                                         </connections>
                                                     </button>
-                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Ei-nBw">
-                                                        <rect key="frame" x="-1" y="47" width="49" height="18"/>
+                                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Ei-nBw">
+                                                        <rect key="frame" x="-1" y="67" width="49" height="18"/>
                                                         <buttonCell key="cell" type="radio" title="Sine" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3H7-Dc-8O4">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1026,50 +1026,50 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
-                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rld-LN-y9Q" userLabel="Stack - Shape">
-                                                <rect key="frame" x="174" y="0.0" width="67" height="163"/>
+                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rld-LN-y9Q" userLabel="Stack - Shape">
+                                                <rect key="frame" x="178" y="0.0" width="64" height="183"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BxG-lr-zLO">
-                                                        <rect key="frame" x="9" y="144" width="50" height="19"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BxG-lr-zLO">
+                                                        <rect key="frame" x="7" y="164" width="50" height="19"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Shape" id="JNu-Da-ezE">
                                                             <font key="font" metaFont="system" size="16"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iv6-Ai-Fzb" userLabel="Stack - Shape 2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="67" height="136"/>
+                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iv6-Ai-Fzb" userLabel="Stack - Shape 2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="156"/>
                                                         <subviews>
-                                                            <slider horizontalHuggingPriority="750" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="5xy-9l-40R">
-                                                                <rect key="frame" x="-2" y="-3" width="21" height="141"/>
+                                                            <slider horizontalHuggingPriority="750" verticalHuggingPriority="1" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xy-9l-40R">
+                                                                <rect key="frame" x="-2" y="-3" width="20" height="161"/>
                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="XKr-Lb-rYP"/>
                                                                 <connections>
                                                                     <action selector="set_af_shape:" target="SqC-lQ-Uu3" id="vep-Fs-NiO"/>
                                                                 </connections>
                                                             </slider>
-                                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VhZ-4y-E7g" userLabel="Stack - Shape 3">
-                                                                <rect key="frame" x="25" y="0.0" width="42" height="136"/>
+                                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VhZ-4y-E7g" userLabel="Stack - Shape 3">
+                                                                <rect key="frame" x="24" y="0.0" width="40" height="156"/>
                                                                 <subviews>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-qG-bVQ">
-                                                                        <rect key="frame" x="6" y="119" width="31" height="17"/>
+                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-qG-bVQ">
+                                                                        <rect key="frame" x="5" y="139" width="31" height="17"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mod" id="nbX-yJ-Dq1">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>
-                                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q17-DL-yHy" userLabel="Stack - Shape 4">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="111"/>
+                                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q17-DL-yHy" userLabel="Stack - Shape 4">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="131"/>
                                                                         <subviews>
-                                                                            <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="ri8-16-Q2T">
-                                                                                <rect key="frame" x="-2" y="-3" width="21" height="116"/>
+                                                                            <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ri8-16-Q2T">
+                                                                                <rect key="frame" x="-2" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="zgR-DV-0iq"/>
                                                                                 <connections>
                                                                                     <action selector="set_af_shape_mod_min:" target="SqC-lQ-Uu3" id="gpF-TF-m0w"/>
                                                                                 </connections>
                                                                             </slider>
-                                                                            <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="DiO-UN-Yha">
-                                                                                <rect key="frame" x="23" y="-3" width="21" height="116"/>
+                                                                            <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DiO-UN-Yha">
+                                                                                <rect key="frame" x="22" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="xaD-jw-q4D"/>
                                                                                 <connections>
                                                                                     <action selector="set_af_shape_mod_max:" target="SqC-lQ-Uu3" id="jCI-UI-yAF"/>
@@ -1125,40 +1125,40 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
-                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgN-pQ-Jw1" userLabel="Stack - Pitch">
-                                                <rect key="frame" x="338" y="0.0" width="42" height="163"/>
+                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgN-pQ-Jw1" userLabel="Stack - Pitch">
+                                                <rect key="frame" x="343" y="0.0" width="40" height="183"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-SG-Rqv">
-                                                        <rect key="frame" x="1" y="144" width="41" height="19"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-SG-Rqv">
+                                                        <rect key="frame" x="0.0" y="164" width="41" height="19"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pitch" id="pjQ-p3-iAF">
                                                             <font key="font" metaFont="system" size="16"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0YO-4j-8Kh" userLabel="Stack - Pitch 2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="136"/>
+                                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0YO-4j-8Kh" userLabel="Stack - Pitch 2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="156"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8fA-wF-Cfr">
-                                                                <rect key="frame" x="6" y="119" width="31" height="17"/>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8fA-wF-Cfr">
+                                                                <rect key="frame" x="5" y="139" width="31" height="17"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mod" id="t9c-4W-UE2">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
-                                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32o-72-Y2o" userLabel="Stack - Pitch 3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="111"/>
+                                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32o-72-Y2o" userLabel="Stack - Pitch 3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="131"/>
                                                                 <subviews>
-                                                                    <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Q7c-BL-Swr">
-                                                                        <rect key="frame" x="-2" y="-3" width="21" height="116"/>
+                                                                    <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q7c-BL-Swr">
+                                                                        <rect key="frame" x="-2" y="-3" width="20" height="136"/>
                                                                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="gYm-ns-pCm"/>
                                                                         <connections>
                                                                             <action selector="set_af_pitch_mod_min:" target="SqC-lQ-Uu3" id="fbf-a1-590"/>
                                                                         </connections>
                                                                     </slider>
-                                                                    <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Kwb-3U-1Pd">
-                                                                        <rect key="frame" x="23" y="-3" width="21" height="116"/>
+                                                                    <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kwb-3U-1Pd">
+                                                                        <rect key="frame" x="22" y="-3" width="20" height="136"/>
                                                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="iXT-2u-BcF"/>
                                                                         <connections>
                                                                             <action selector="set_af_pitch_mod_max:" target="SqC-lQ-Uu3" id="hnz-KV-cBb"/>
@@ -1309,10 +1309,10 @@
                                                 </customSpacing>
                                             </stackView>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tLL-4G-eiB" userLabel="Stack - Cutoff">
-                                                <rect key="frame" x="115" y="0.0" width="67" height="183"/>
+                                                <rect key="frame" x="116" y="0.0" width="64" height="183"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JO7-Vf-mGu" userLabel="Cutoff">
-                                                        <rect key="frame" x="9" y="164" width="50" height="19"/>
+                                                        <rect key="frame" x="7" y="164" width="50" height="19"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cutoff" id="ip5-Bo-p9O">
                                                             <font key="font" metaFont="system" size="16"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1320,17 +1320,17 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsC-Ny-QvQ" userLabel="Stack - Cutoff 2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="67" height="156"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="156"/>
                                                         <subviews>
                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="wT7-rE-XbR">
-                                                                <rect key="frame" x="-2" y="-3" width="21" height="161"/>
+                                                                <rect key="frame" x="-2" y="-3" width="20" height="161"/>
                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="V7b-83-ZDc"/>
                                                             </slider>
                                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUj-jM-tkP" userLabel="Stack - Cutoff 3">
-                                                                <rect key="frame" x="25" y="0.0" width="42" height="156"/>
+                                                                <rect key="frame" x="24" y="0.0" width="40" height="156"/>
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yfh-qe-FQd">
-                                                                        <rect key="frame" x="6" y="139" width="31" height="17"/>
+                                                                        <rect key="frame" x="5" y="139" width="31" height="17"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mod" id="F3P-NC-DiG">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1338,14 +1338,14 @@
                                                                         </textFieldCell>
                                                                     </textField>
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohz-pR-Bfb" userLabel="Stack - Cutoff 4">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="131"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="131"/>
                                                                         <subviews>
                                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Nyw-Nd-JyO">
-                                                                                <rect key="frame" x="-2" y="-3" width="21" height="136"/>
+                                                                                <rect key="frame" x="-2" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="oFP-eG-cmO"/>
                                                                             </slider>
                                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="HJN-aP-Slb">
-                                                                                <rect key="frame" x="23" y="-3" width="21" height="136"/>
+                                                                                <rect key="frame" x="22" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="Pmc-AZ-FtA"/>
                                                                             </slider>
                                                                         </subviews>
@@ -1399,7 +1399,7 @@
                                                 </customSpacing>
                                             </stackView>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxZ-IE-76L" userLabel="Stack - Resonance">
-                                                <rect key="frame" x="205" y="0.0" width="80" height="183"/>
+                                                <rect key="frame" x="204" y="0.0" width="80" height="183"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mr1-5i-t8g" userLabel="Resonance">
                                                         <rect key="frame" x="-2" y="164" width="84" height="19"/>
@@ -1410,17 +1410,17 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnw-eC-X1n" userLabel="Stack - Resonance 2">
-                                                        <rect key="frame" x="7" y="0.0" width="67" height="156"/>
+                                                        <rect key="frame" x="8" y="0.0" width="64" height="156"/>
                                                         <subviews>
                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="ebx-w5-VME">
-                                                                <rect key="frame" x="-2" y="-3" width="21" height="161"/>
+                                                                <rect key="frame" x="-2" y="-3" width="20" height="161"/>
                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="UX5-lf-1Zy"/>
                                                             </slider>
                                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H0Q-WE-MPl" userLabel="Stack - Resonance 3">
-                                                                <rect key="frame" x="25" y="0.0" width="42" height="156"/>
+                                                                <rect key="frame" x="24" y="0.0" width="40" height="156"/>
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t6P-do-Hqh">
-                                                                        <rect key="frame" x="6" y="139" width="31" height="17"/>
+                                                                        <rect key="frame" x="5" y="139" width="31" height="17"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mod" id="a5l-Wv-Gpz">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1428,14 +1428,14 @@
                                                                         </textFieldCell>
                                                                     </textField>
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vbg-jy-Jwh" userLabel="Stack - Shape 4">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="131"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="131"/>
                                                                         <subviews>
                                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="sny-8N-Ypw">
-                                                                                <rect key="frame" x="-2" y="-3" width="21" height="136"/>
+                                                                                <rect key="frame" x="-2" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="4qW-Gv-Fo3"/>
                                                                             </slider>
                                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="n8e-t8-s2A">
-                                                                                <rect key="frame" x="23" y="-3" width="21" height="136"/>
+                                                                                <rect key="frame" x="22" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="KR5-TH-Gex"/>
                                                                             </slider>
                                                                         </subviews>
@@ -1500,17 +1500,17 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6SF-yt-5Ba" userLabel="Stack - Key Track 2">
-                                                        <rect key="frame" x="3" y="0.0" width="67" height="156"/>
+                                                        <rect key="frame" x="4" y="0.0" width="64" height="156"/>
                                                         <subviews>
                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Evo-7Y-nc5">
-                                                                <rect key="frame" x="-2" y="-3" width="21" height="161"/>
+                                                                <rect key="frame" x="-2" y="-3" width="20" height="161"/>
                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" sliderType="linear" id="b0w-kT-x3s"/>
                                                             </slider>
                                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V2T-7P-ZoN" userLabel="Stack - Key Track 3">
-                                                                <rect key="frame" x="25" y="0.0" width="42" height="156"/>
+                                                                <rect key="frame" x="24" y="0.0" width="40" height="156"/>
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zE1-Ea-emm">
-                                                                        <rect key="frame" x="6" y="139" width="31" height="17"/>
+                                                                        <rect key="frame" x="5" y="139" width="31" height="17"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mod" id="eld-EH-eNF">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1518,14 +1518,14 @@
                                                                         </textFieldCell>
                                                                     </textField>
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zj7-Zc-rR7" userLabel="Stack - Key Track 4">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="131"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="131"/>
                                                                         <subviews>
                                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="a77-vX-Tda">
-                                                                                <rect key="frame" x="-2" y="-3" width="21" height="136"/>
+                                                                                <rect key="frame" x="-2" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="bvz-GH-uVb"/>
                                                                             </slider>
                                                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="dIs-eo-3rq">
-                                                                                <rect key="frame" x="23" y="-3" width="21" height="136"/>
+                                                                                <rect key="frame" x="22" y="-3" width="20" height="136"/>
                                                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="ZPv-7W-U8U"/>
                                                                             </slider>
                                                                         </subviews>
@@ -1631,7 +1631,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <slider horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTI-AG-DOW">
-                                                        <rect key="frame" x="13" y="-3" width="21" height="161"/>
+                                                        <rect key="frame" x="14" y="-3" width="20" height="161"/>
                                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="fYu-nF-mP1"/>
                                                         <connections>
                                                             <action selector="set_attack:" target="SqC-lQ-Uu3" id="Xte-dB-98Y"/>
@@ -1664,7 +1664,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <slider horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="amq-Kt-rVp">
-                                                        <rect key="frame" x="13" y="-3" width="21" height="161"/>
+                                                        <rect key="frame" x="13" y="-3" width="20" height="161"/>
                                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="Ehi-3V-jng"/>
                                                         <connections>
                                                             <action selector="set_decay:" target="SqC-lQ-Uu3" id="G0Z-KP-aWD"/>
@@ -1697,7 +1697,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <slider horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-FV-U1h">
-                                                        <rect key="frame" x="17" y="-3" width="21" height="161"/>
+                                                        <rect key="frame" x="17" y="-3" width="20" height="161"/>
                                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="Jd2-S6-Ehm"/>
                                                         <connections>
                                                             <action selector="set_sustain:" target="SqC-lQ-Uu3" id="r5J-5b-DG5"/>
@@ -1730,7 +1730,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <slider horizontalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pna-0e-pGa">
-                                                        <rect key="frame" x="18" y="-3" width="21" height="161"/>
+                                                        <rect key="frame" x="19" y="-3" width="20" height="161"/>
                                                         <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="cid-2w-IAu"/>
                                                         <connections>
                                                             <action selector="set_release:" target="SqC-lQ-Uu3" id="4mz-VL-424"/>
@@ -1788,22 +1788,22 @@
                         <outlet property="delegate" destination="SqC-lQ-Uu3" id="cw1-mv-twR"/>
                     </connections>
                 </tabView>
-                <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckQ-VC-bBo" userLabel="Stack - Amount">
-                    <rect key="frame" x="503" y="23" width="67" height="183"/>
+                <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckQ-VC-bBo" userLabel="Stack - Amount">
+                    <rect key="frame" x="503" y="23" width="64" height="183"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W3D-uC-hjb">
-                            <rect key="frame" x="3" y="164" width="61" height="19"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W3D-uC-hjb">
+                            <rect key="frame" x="2" y="164" width="61" height="19"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="Amount" id="mfU-vL-QlO">
                                 <font key="font" metaFont="system" size="16"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAr-ji-2BK">
-                            <rect key="frame" x="0.0" y="0.0" width="67" height="156"/>
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAr-ji-2BK">
+                            <rect key="frame" x="0.0" y="0.0" width="64" height="156"/>
                             <subviews>
-                                <slider horizontalHuggingPriority="750" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="R9F-IV-xTz">
-                                    <rect key="frame" x="-2" y="7" width="21" height="141"/>
+                                <slider horizontalHuggingPriority="750" verticalHuggingPriority="1" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R9F-IV-xTz">
+                                    <rect key="frame" x="-2" y="7" width="20" height="141"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="136" id="xD3-dM-hOJ"/>
                                     </constraints>
@@ -1812,29 +1812,29 @@
                                         <action selector="set_amount:" target="SqC-lQ-Uu3" id="V8J-VG-OrG"/>
                                     </connections>
                                 </slider>
-                                <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAw-Y3-yty">
-                                    <rect key="frame" x="25" y="0.0" width="42" height="156"/>
+                                <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAw-Y3-yty">
+                                    <rect key="frame" x="24" y="0.0" width="40" height="156"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q7N-o7-VzN">
-                                            <rect key="frame" x="6" y="139" width="31" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7N-o7-VzN">
+                                            <rect key="frame" x="5" y="139" width="31" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mod" id="spP-3e-C2X">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7tU-tN-aPD">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="131"/>
+                                        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" misplaced="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7tU-tN-aPD">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="131"/>
                                             <subviews>
-                                                <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-DX-Nnj">
-                                                    <rect key="frame" x="-2" y="-3" width="21" height="136"/>
+                                                <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-DX-Nnj">
+                                                    <rect key="frame" x="-2" y="-3" width="20" height="136"/>
                                                     <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="iEz-JH-VKg"/>
                                                     <connections>
                                                         <action selector="set_amount_mod_min:" target="SqC-lQ-Uu3" id="GwC-0f-Ugz"/>
                                                     </connections>
                                                 </slider>
-                                                <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="5Ue-x3-IKk">
-                                                    <rect key="frame" x="23" y="-3" width="21" height="136"/>
+                                                <slider horizontalHuggingPriority="750" verticalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ue-x3-IKk">
+                                                    <rect key="frame" x="22" y="-3" width="20" height="136"/>
                                                     <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="HK3-CF-i7l"/>
                                                     <connections>
                                                         <action selector="set_amount_mod_max:" target="SqC-lQ-Uu3" id="zBd-qk-ejL"/>
